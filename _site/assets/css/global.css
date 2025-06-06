@@ -1,0 +1,142 @@
+@charset "utf-8";
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    padding-top: 5.0rem;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 700;
+}
+
+.text-profile-position {
+    font-weight: 400;
+}
+
+.text-profile-bio {
+    /* font-family: "Raleway"; */
+    font-weight: 400;
+}
+
+.navbar {
+    opacity: 0.95;
+}
+
+.inline-badge {
+    height: 16px;
+    vertical-align: -10%;
+    margin-right: 2px;
+    line-break: unset;
+}
+
+.no-break {
+    white-space: nowrap;
+}
+
+.cover-image {
+    width: 180px;
+    max-height: 120px;
+}
+
+.abstract-body {
+    min-height: 100px;
+}
+
+img.lazy {
+    background-image: url('images/loading.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50px 50px;
+    min-height: 80px;
+}
+
+div.lazy {
+    background-image: url('images/loading.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50px 50px;
+    min-height: 80px;
+}
+
+.badge-publication {
+    font-size: 100%;
+}
+
+.email-text {
+    font-family: Courier, monospace;
+}
+
+
+@keyframes changeLetter {
+    0% {content: "";}
+    1.9% {content: "p";}
+    3.8% {content: "ph";}
+    5.7% {content: "pho";}
+    7.6% {content: "phot";}
+    9.5% {content: "photo";}
+    11.4% {content: "photog";}
+    13.3% {content: "photogr";}
+    15.2% {content: "photogra";}
+    17.1% {content: "photograp";}
+    19% {content: "photograph";}
+    20.9% {content: "photographe";}
+    22.8% {content: "photographer";}
+    24.7% {content: "photographer.";}
+    26% {content: "photographer.📸";}
+    26.6% {content: "photographer.";}
+    28.5% {content: "photographer";}
+    30.4% {content: "photographe";}
+    32.3% {content: "photograph";}
+    34.2% {content: "photograp";}
+    36.1% {content: "photogra";}
+    38% {content: "photogr";}
+    39.9% {content: "photog";}
+    41.8% {content: "photo";}
+    43.7% {content: "phot";}
+    45.6% {content: "pho";}
+    47.5% {content: "ph";}
+    49.4% {content: "p";}
+    51.3% {content: "";}
+    53.2% {content: "b";}
+    55.1% {content: "bo";}
+    57% {content: "box";}
+    58.9% {content: "boxe";}
+    60.8% {content: "boxer";}
+    62.7% {content: "boxer.";}
+    64% {content: "boxer.🥊";}
+    64.6% {content: "boxer.";}
+    66.5% {content: "boxer";}
+    68.4% {content: "boxe";}
+    70.3% {content: "box";}
+    72.2% {content: "bo";}
+    74.1% {content: "b";}
+    76% {content: "";}
+    77.9% {content: "g";}
+    79.8% {content: "ga";}
+    81.7% {content: "gam";}
+    83.6% {content: "game";}
+    85.5% {content: "gamer";}
+    87.4% {content: "gamer.";}
+    89% {content: "gamer.🎮";}
+    89.3% {content: "gamer.";}
+    91.2% {content: "gamer";}
+    93.1% {content: "game";}
+    95% {content: "gam";}
+    96.9% {content: "ga";}
+    98.8% {content: "g";}
+}
+
+@keyframes cursor {
+  0% {content: "";}
+  50% {content: "_";}
+  100% {content: "";}
+}
+.letter-changer::before {
+  animation: changeLetter 6s linear 1s infinite normal forwards;
+  content: "";
+}
+.letter-changer::after {
+  animation: cursor 0.6s linear 2.2s 1 infinite normal forwards, cursor 0.6s linear 4s 3 infinite normal forwards;
+  content: "_";
+}
