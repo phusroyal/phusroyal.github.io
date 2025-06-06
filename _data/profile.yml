@@ -4,7 +4,7 @@ navbar_name: "PhusRoyal"
 
 positions:
 - logo: assets/images/badges/TU_Darmstadt_Athene.svg  # Logo is optional
-  name: Research Intern @ UKP Lab 
+  name: Research Associate @ UKP Lab 
 # - name: Position 2 without logo
 
 
@@ -22,7 +22,7 @@ linkedin: phugiahoang
 short_bio_text_justify: false
 short_bio: >-
   <p>
-  I am currently a research intern at the 
+  I am currently a research associate at the 
   <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp" target="_blank">UKP Lab</a>, 
   TU Darmstadt, under the supervision of 
   <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp" target="_blank">Prof. Iryna Gurevych</a>. 
@@ -67,7 +67,7 @@ education:
 experience:
 - name: TU Darmstadt
   logo: /assets/images/badges/TU_Darmstadt_Athene.svg 
-  position: Research Intern @ UKP Lab 
+  position: Research Associate @ UKP Lab 
   date: May. 2025 - Present
 - name: Fujairah Research Center
   logo: /assets/images/badges/frclogo.png
