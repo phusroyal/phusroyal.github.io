@@ -1,5 +1,5 @@
-primary_name: "Phu Gia Hoang"
-secondary_name: ""
+primary_name: 'Phu <a href="https://translate.google.com/?sl=vi&tl=en&text=Ho%C3%A0ng%20Gia&op=translate" target="_blank">Gia Hoang</a>'
+# secondary_name: "fˈuː˦ d͡ʒˈi͡ə hˈə͡ʊŋ˨"
 navbar_name: "PhusRoyal"
 
 positions:
@@ -22,12 +22,32 @@ linkedin: phugiahoang
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    A <a href="https://en.wikipedia.org/wiki/Bicolor_cat" target="_blank">bicolor cat</a> is a cat with white fur combined with fur of some other colour, for example solid black, tabby, or colourpointed.
+  I am currently a research intern at the 
+  <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp" target="_blank">UKP Lab</a>, 
+  TU Darmstadt, under the supervision of 
+  <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp" target="_blank">Prof. Iryna Gurevych</a>. 
+  My research focuses on <strong>language models</strong> and <strong>interpretability</strong>. 
+  I aim to contribute to the development of more transparent and efficient AI systems.
   </p>
+
   <p>
-    There are various patterns of a bicolour cat. These range from the Van-patterned (colour on the crown of the head 
-    and the tail only) to a solid colour with a throat locket or medallion. Bicolour coats are found in many cat breeds, 
-    as well as being common in domestic longhair and domestic shorthair cats.
+    I completed my MSc in Natural Language Processing at 
+    <a href="https://mbzuai.ac.ae/" target="_blank">MBZUAI</a>, 
+    where I was advised by 
+    <a href="https://yovakem.github.io/" target="_blank">Dr. Yova Kementchedjhieva</a> and 
+    <a href="https://kentaro-inui.github.io/" target="_blank">Prof. Kentaro Inui</a>. 
+    My thesis explored how large language models can reuse previous computations to speed up text generation without losing accuracy.
+  </p>
+
+  <p>
+    During my undergraduate studies, I conducted research under 
+    <a href="https://scholar.google.com/citations?user=v3RSwOkAAAAJ" target="_blank">Dr. Kiet Nguyen</a> and 
+    <a href="https://scholar.google.com/citations?user=VoTCbXYAAAAJ" target="_blank">Prof. Ngan Nguyen</a> 
+    at <a href="https://nlp.uit.edu.vn/home" target="_blank">UIT NLP Group</a>. 
+    My work focused on hate speech detection and Vietnamese NLP.
+  </p>
+
+  <p>I've published in venues like EACL, NAACL, SemEval, and Neural Computing & Applications.</p>
   </p>
 
 portrait_url: /assets/images/photos/phusgpt.WEBP

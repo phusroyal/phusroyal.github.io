@@ -1,7 +1,7 @@
 ---
 title:          "ViHOS: Hate Speech Spans Detection for Vietnamese"
 # date:           2024-05-12 00:01:00 +0800
-selected:       false
+selected:       true
 pub:            "European Chapter of the Association for Computational Linguistics (EACL)"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
@@ -9,14 +9,15 @@ pub:            "European Chapter of the Association for Computational Linguisti
 pub_date:       "2023"
 
 abstract: >-
-  Photo by Pineapple Supply Co. on Unsplash. Please put a tldr (too-long-didnt-read, 1~2 sentences) of your publication here. It is not recommended to put the actual abstract here because it is usually too long to fit in. $\LaTeX$ is supported. $a=b+c$.
+  Proposed a novel dataset, ViHOS - Vietnamese Hate and Offensive Spans, which consists of
+  11,056 online comments with advanced annotations on what make a sentence offensive and benchmark experiments.
 cover:          assets/images/covers/vihos_cover.gif
 authors:
-  - Phu Gia Hoang
+  - phugiahoang
   - Canh Duc Luu
   - Kiet Van Nguyen
   - Ngan Luu-Thuy Nguyen
 links:
-  Code: https://github.com/luost26/academic-homepage
-  Unsplash: https://unsplash.com/photos/sliced-in-half-pineapple--_PLJZmHZzk
+  Paper: https://www.biorxiv.org
+  Code: https://github.com
 ---
