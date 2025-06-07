@@ -9,8 +9,8 @@ pub:            "European Chapter of the Association for Computational Linguisti
 pub_date:       "2023"
 
 abstract: >-
-  Proposed a novel dataset, ViHOS - Vietnamese Hate and Offensive Spans, which consists of
-  11,056 online comments with advanced annotations on what make a sentence offensive and benchmark experiments.
+  Proposed a novel task for Vietnamese NLP, ViHOS - Vietnamese Hate and Offensive Spans, which consists of
+  12k online comments with advanced annotations on what make a sentence offensive and benchmark experiments.
 cover:          assets/images/covers/vihos_cover.gif
 authors:
   - phu
