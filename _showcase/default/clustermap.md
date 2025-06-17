@@ -1,7 +1,7 @@
 ---
 show: true
 width: 4
-date: 2020-01-12 00:01:00 +0800
+date: 2021-01-12 00:01:00 +0800
 ---
 <div>
   <div class="text-center p-3">
@@ -9,9 +9,6 @@ date: 2020-01-12 00:01:00 +0800
   </div>
   <div class="card-body">
     <h5 class="card-title">Visitor Map</h5>
-    <p class="card-text">
-      This globe shows the geographical distribution of visitors to this website.
-    </p>
-    <p class="card-text"><small>Powered by ClustrMaps</small></p>
+    <p class="card-text"><small>Can't see it? Disable your adblock 🛡️</small></p>
   </div>
 </div>

@@ -3,7 +3,7 @@ Hi I am Phu Gia Hoang. See more here for the template: https://github.com/luost2
 To do list:
 
 - [x] Launch the site
-- [ ] Contact
-- [ ] Who visited?
+- [x] Contact
+- [x] Who visited?
 - [ ] Separate pages for each paper
 - [ ] Showcase for images
