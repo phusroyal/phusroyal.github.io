@@ -26,7 +26,7 @@ short_bio: >-
   <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp" target="_blank">UKP Lab</a>, 
   TU Darmstadt, under the supervision of 
   <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp" target="_blank">Prof. Iryna Gurevych</a>. 
-  My research focuses on <strong>language models</strong> and <strong>interpretability</strong>. 
+  My research focuses on <strong>language models</strong> and <strong>mechanistic interpretability</strong>. 
   I aim to contribute to the development of more transparent and efficient AI systems.
   </p>
 
@@ -75,7 +75,7 @@ experience:
   date: Jun. 2024 - Jul. 2024
 - name: VinBigData JSC, VinGroup
   logo: /assets/images/badges/vbdlogo.png
-  position: Engineer Intern
+  position: AI Engineer
   date: Jul. 2022 - May. 2023
 
 # awards:
