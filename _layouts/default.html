@@ -47,5 +47,10 @@
     </script>
     <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/bubble_visual_hash.js' | relative_url }}"></script>
+    {% unless page.url == '/showcase.html' %}
+        <div class="d-none" aria-hidden="true">
+            <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=-1YW98BxwveWUbr3NgZmg1CjKpNbh2LVKoFPzPTJxGw&cl=ffffff&w=a"></script>
+        </div>
+    {% endunless %}
 </body>
 </html>
