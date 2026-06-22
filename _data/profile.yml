@@ -57,11 +57,11 @@ portrait_caption: >-
 education:
 - name: Mohamed bin Zayed University of Artificial Intelligence
   logo: /assets/images/badges/mbzlogo.png
-  position: M.Sc. in Natural Language Processing
+  position: M.Sc. in NLP
   date: Sep. 2023 - May 2025
 - name: VNU-HCM University of Information Technology
   logo: /assets/images/badges/uit.png
-  position: B.S. in Data Science
+  position: B.Sc.
   date: Aug. 2019 - Apr. 2023
 
 experience:

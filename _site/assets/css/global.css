@@ -43,6 +43,47 @@ h1, h2, h3, h4, h5, h6,
     min-height: 100px;
 }
 
+.experience-card .media-body {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.experience-item {
+    margin-bottom: 0.85rem !important;
+}
+
+.experience-item-name {
+    font-size: 0.84rem;
+    line-height: 1.2;
+    margin-bottom: 0.18rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.experience-item-meta {
+    align-items: baseline;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    line-height: 1.25;
+    margin-top: 0.08rem;
+}
+
+.experience-item-position {
+    font-style: italic;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+.experience-item-date {
+    flex: 0 0 auto;
+    font-size: 0.9em;
+    margin-top: 0;
+    text-align: right;
+    white-space: nowrap;
+}
+
 img.lazy {
     background-image: url('images/loading.gif');
     background-repeat: no-repeat;
