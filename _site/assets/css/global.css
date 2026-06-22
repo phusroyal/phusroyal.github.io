@@ -67,6 +67,99 @@ div.lazy {
     font-family: Courier, monospace;
 }
 
+.home-layout {
+    align-items: stretch;
+}
+
+.home-sidebar {
+    overflow: hidden;
+}
+
+.sticky-below-navbar {
+    top: 80px;
+}
+
+.home-sidebar-name {
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.home-sidebar-name a {
+    color: inherit;
+}
+
+.home-sidebar-role {
+    color: #111;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.home-sidebar-affiliation {
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: center;
+}
+
+.home-sidebar-affiliation a {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.home-sidebar-affiliation img {
+    display: inline-block;
+    height: 1rem;
+    max-height: 1rem;
+    max-width: 1rem;
+    object-fit: contain;
+    width: auto;
+    vertical-align: -0.15rem;
+}
+
+.home-sidebar-email {
+    color: #3f95ff;
+    font-size: 0.82rem;
+    line-height: 1.3;
+    margin-top: 0.45rem;
+    overflow-wrap: normal;
+    white-space: nowrap;
+}
+
+.home-sidebar-portrait {
+    width: 180px;
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.home-sidebar-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.home-sidebar-links a {
+    color: #006ee6;
+    font-size: 1.45rem;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.home-sidebar-links a:hover {
+    color: #0056b3;
+}
+
+@media (max-width: 575.98px) {
+    .home-card-body,
+    .home-sidebar .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
 
 @keyframes changeLetter {
     0% {content: "";}

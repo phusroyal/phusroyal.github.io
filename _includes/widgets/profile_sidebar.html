@@ -1,0 +1,84 @@
+<div class="row sticky-top sticky-below-navbar">
+    <div class="col">
+        <div class="home-sidebar card border-0 shadow-sm bg-white">
+            <div class="card-body p-4 text-center">
+                {% if site.data.profile.portrait_url %}
+                <a target="_blank" href="{{ site.data.profile.portrait_url | relative_url }}">
+                    <img
+                        src="{{ site.data.profile.portrait_url | relative_url }}"
+                        class="home-sidebar-portrait img-thumbnail"
+                        alt="Portrait"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="{{ site.data.profile.portrait_caption }}">
+                </a>
+                {% endif %}
+
+                <div class="home-sidebar-name h3 mt-3 mb-2">
+                    {{ site.data.profile.primary_name }} <small>{{ site.data.profile.secondary_name }}</small>
+                </div>
+
+                <div class="home-sidebar-role text-profile-position">
+                    <div>Research Associate</div>
+                    <div class="home-sidebar-affiliation">
+                        <span>@ UKP</span>
+                        <a target="_blank" href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/index.en.jsp" aria-label="UKP Lab" title="UKP Lab">
+                            <img src="{{ '/assets/images/badges/ukplogo.png' | relative_url }}" alt="UKP Lab">
+                        </a>
+                        <span>TU Darmstadt</span>
+                        <a target="_blank" href="https://www.tu-darmstadt.de/" aria-label="TU Darmstadt" title="TU Darmstadt">
+                            <img src="{{ '/assets/images/badges/TU_Darmstadt_Athene.svg' | relative_url }}" alt="TU Darmstadt">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="home-sidebar-email email-text">
+                    {{ site.data.profile.email | replace: "@", "(at)" }}
+                </div>
+
+                <div class="home-sidebar-links" aria-label="Profile links">
+                    {% if site.data.profile.cv_link %}
+                    <a target="_blank" href="{{ site.data.profile.cv_link | relative_url }}" aria-label="Curriculum Vitae" title="Curriculum Vitae">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if site.data.profile.gscholar %}
+                    {%- if site.data.profile.gscholar contains 'scholar.google' -%}
+                    {%- assign gscholar_url = site.data.profile.gscholar -%}
+                    {%- else -%}
+                    {%- assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: site.data.profile.gscholar -%}
+                    {%- endif -%}
+                    <a target="_blank" href="{{ gscholar_url }}" aria-label="Google Scholar" title="Google Scholar">
+                        <i class="fab fa-google-scholar" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if site.data.profile.github %}
+                    <a target="_blank" href="https://github.com/{{ site.data.profile.github }}" aria-label="GitHub" title="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if site.data.profile.twitter %}
+                    <a target="_blank" href="https://twitter.com/{{ site.data.profile.twitter }}" aria-label="Twitter" title="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if site.data.profile.linkedin %}
+                    <a target="_blank" href="https://www.linkedin.com/in/{{ site.data.profile.linkedin }}" aria-label="LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+
+                    {% if site.data.profile.orcid %}
+                    <a target="_blank" href="https://orcid.org/{{ site.data.profile.orcid }}" aria-label="ORCID" title="ORCID">
+                        <i class="fab fa-orcid" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
