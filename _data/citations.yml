@@ -1,0 +1,20 @@
+2021-toxic:
+  count: 8
+  url: "https://scholar.google.com/scholar?cites=10858144243684925421&as_sdt=2005&sciodt=0,5&hl=en"
+  updated: "2026-06-22"
+2023-phocnn:
+  count: 45
+  url: "https://scholar.google.com/scholar?cites=13851536095315564785&as_sdt=2005&sciodt=0,5&hl=en"
+  updated: "2026-06-22"
+2023-vbd:
+  count: 1
+  url: "https://scholar.google.com/scholar?cites=8976692797350280932&as_sdt=2005&sciodt=0,5&hl=en"
+  updated: "2026-06-22"
+2023-vihos:
+  count: 43
+  url: "https://scholar.google.com/scholar?cites=17928879615124081104&as_sdt=2005&sciodt=0,5&hl=en"
+  updated: "2026-06-22"
+2024-cafebert:
+  count: 18
+  url: "https://scholar.google.com/scholar?cites=17319224377368932226&as_sdt=2005&sciodt=0,5&hl=en"
+  updated: "2026-06-22"

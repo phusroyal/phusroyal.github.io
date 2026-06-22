@@ -1,8 +1,8 @@
 Hi I am Phu Gia Hoang. See more here for the template: https://github.com/luost26/academic-homepage 
 
 To build: bundle exec jekyll serve 
+To fetch citations: python scripts/update_google_scholar_citations.py
 
-- 2 columns format
 
 Inspirations:
 - https://onethousandwu.com/

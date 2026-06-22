@@ -3,6 +3,7 @@ title:          "UIT-E10dot3 at SemEval-2021 Task 5: Toxic Spans Detection with 
 date:           2021-05-1 00:01:00 +0800
 selected:       false
 pub:            "International Workshop on Semantic Evaluation (SemEval)"
+tag:            "SemEval"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'

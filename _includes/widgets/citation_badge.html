@@ -1,0 +1,11 @@
+{% assign citation = include.citation %}
+{% assign citation_count_text = citation.count | append: "" %}
+{% if citation and citation_count_text != "" %}
+{% assign citation_count = citation.count | plus: 0 %}
+{% capture citation_label %}{{ citation_count }} {% if citation_count == 1 %}citation{% else %}citations{% endif %}{% endcapture %}
+{% if citation.url %}
+<a class="citation-badge" href="{{ citation.url }}" target="_blank" rel="noopener"><img class="citation-badge-icon" src="{{ '/assets/images/icons/pen-tool-flaticon-481872.png' | relative_url }}" alt="" aria-hidden="true">{{ citation_label }}</a>
+{% else %}
+<span class="citation-badge"><img class="citation-badge-icon" src="{{ '/assets/images/icons/pen-tool-flaticon-481872.png' | relative_url }}" alt="" aria-hidden="true">{{ citation_label }}</span>
+{% endif %}
+{% endif %}

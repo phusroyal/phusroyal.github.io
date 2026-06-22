@@ -3,6 +3,7 @@ title:          "VLUE: A New Benchmark and Multi-task Knowledge Transfer Learnin
 date:           2024-05-12 00:01:00 +0800
 selected:       false
 pub:            "Findings of North American Chapter of the Association for Computational Linguistics (NAACL)"
+tag:            "NAACL"
 # pub_pre:        "Submitted to "
 # pub_post:       'Under review.'
 # pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'
