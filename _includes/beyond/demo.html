@@ -1,0 +1,97 @@
+{% assign citation_key = page.citation_key | default: 'interactive-demo' %}
+{% assign citation = site.data.citations[citation_key] %}
+<div class="interactive-demo" data-demo-root>
+    <section id="interactive-figure-1">
+        <h2>Interactive Figure 1</h2>
+        <p>Click the canvas to add a shape, drag a shape to throw it, and adjust the controls to change the simulation.</p>
+        <div class="demo-panel demo-panel-dark">
+            <div class="physics-controls">
+                <div>
+                    <p class="demo-label">Physics sandbox</p>
+                    <p class="demo-hint">Click empty space to spawn. Drag to throw.</p>
+                </div>
+                <label>Gravity <input data-physics-gravity type="range" min="-1" max="1" step="0.05" value="0.45"></label>
+                <button type="button" data-physics-slow aria-pressed="false">Slow motion: off</button>
+                <button type="button" data-physics-clear>Clear all</button>
+                <button type="button" data-physics-stack>Add stack</button>
+            </div>
+            <canvas data-physics-canvas width="900" height="500" aria-label="Interactive physics sandbox"></canvas>
+        </div>
+        <p class="figure-caption">Original browser-based physics sandbox.</p>
+    </section>
+
+    <section id="example-animation">
+        <h2>Animated Figure</h2>
+        <p>This page can present motion directly in the browser without a separate application or server.</p>
+        <div class="demo-motion" role="img" aria-label="Animated colored signal flowing through a sequence of layers">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p class="figure-caption">A lightweight CSS animation placeholder.</p>
+    </section>
+
+    <section id="interactive-figure-2">
+        <h2>Interactive Figure 2</h2>
+        <p>Move the slider to explore a tangent line along a smooth curve.</p>
+        <div class="demo-panel">
+            <label class="demo-range">Position <input data-tangent-slider type="range" min="24" max="456" value="250"></label>
+            <svg data-tangent-plot viewBox="0 0 480 260" role="img" aria-label="Interactive curve and tangent line"></svg>
+            <p class="demo-readout" data-tangent-readout></p>
+        </div>
+    </section>
+
+    <section id="interactive-figure-3">
+        <h2>Interactive Figure 3</h2>
+        <p>Drag any node to reorganize this small force-directed graph.</p>
+        <div class="demo-panel">
+            <div class="demo-graph-actions"><button type="button" data-graph-reset>Reset graph</button></div>
+            <svg data-force-graph viewBox="0 0 640 360" role="img" aria-label="Interactive force-directed graph"></svg>
+        </div>
+    </section>
+
+    <section id="static-image">
+        <h2>Static Image</h2>
+        <p>A static visual can sit beside interactive figures in the same reading flow.</p>
+        <div class="demo-static-visual" role="img" aria-label="Abstract layered research diagram">
+            <div class="demo-static-title">From text to spans</div>
+            <div class="demo-static-row"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="demo-static-row is-shifted"><span></span><span></span><span></span><span></span></div>
+            <div class="demo-static-row"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <p class="figure-caption">Original CSS-based static illustration.</p>
+    </section>
+
+    <section id="example-math">
+        <h2>Example Math</h2>
+        <p>Inline math such as $p(y \mid x)$ and display math render directly in the article.</p>
+        <div class="demo-equation">$$L = -\sum_{i=1}^{n} \log p(y_i \mid x_i; \theta)$$</div>
+    </section>
+
+    <section id="example-code">
+        <h2>Example Code</h2>
+        <p>Code blocks can explain the idea next to its interactive counterpart.</p>
+        <pre><code>function highlightSpans(tokens, scores) {
+  return tokens.map((token, index) =&gt; ({
+    token,
+    score: scores[index],
+    highlighted: scores[index] &gt; 0.5
+  }));
+}</code></pre>
+    </section>
+
+    <section id="example-citations">
+        <h2>Example Citations</h2>
+        <p>This placeholder keeps academic details close to the interactive material.</p>
+        {% if page.paper_url or page.code_url %}
+        <p class="demo-resource-links">
+            {% if page.paper_url %}<a href="{{ page.paper_url }}" target="_blank" rel="noopener">Read the paper</a>{% endif %}
+            {% if page.code_url %}<a href="{{ page.code_url }}" target="_blank" rel="noopener">View code</a>{% endif %}
+        </p>
+        {% endif %}
+        {% if citation and citation.count %}<p class="demo-citation-count">{{ citation.count }} citations, cached {{ citation.updated }}.</p>{% endif %}
+        <pre><code>@misc&#123;{{ citation_key }},
+  title = &#123;{{ page.title }}&#125;,
+  author = &#123;{{ page.author | default: site.data.profile.navbar_name }}&#125;,
+  year = &#123;{{ page.date | date: '%Y' | default: '2026' }}&#125;
+&#125;</code></pre>
+    </section>
+</div>

@@ -12,6 +12,9 @@
                     <a class="nav-link" href="{{ item.url | relative_url }}">{{ item.name }}</a>
                 </li>
                 {% endfor %}
+                <li class="nav-item theme-toggle-item">
+                    {% include theme_toggle.html %}
+                </li>
             </ul>
         </div>
     </div>

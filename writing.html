@@ -1,0 +1,25 @@
+---
+layout: default
+title: Writing
+navbar_title: Writing
+permalink: /writing/
+---
+
+<section class="writing-index">
+    <div class="writing-index-heading">
+        <p class="writing-kicker">Notes and experiments</p>
+        <h1>Writing</h1>
+        <p>Local placeholders for research ideas, competition notes, and interactive web-native essays.</p>
+    </div>
+    <div class="writing-list">
+        {% assign writing_items = site.writing | sort: 'date' | reverse %}
+        {% for item in writing_items %}
+        <article class="writing-card">
+            <p>{{ item.date | date: "%B %-d, %Y" }} · {{ item.kind }}</p>
+            <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
+            <p>{{ item.description }}</p>
+            <a class="writing-read-link" href="{{ item.url | relative_url }}">Open interactive page <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </article>
+        {% endfor %}
+    </div>
+</section>

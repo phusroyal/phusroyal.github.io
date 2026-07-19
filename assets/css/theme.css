@@ -1,0 +1,33 @@
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+html[data-theme="dark"]::view-transition-old(root) {
+    animation: theme-circle-shrink 0.42s cubic-bezier(0.65, 0, 0.35, 1) both;
+    z-index: 2;
+}
+
+html[data-theme="dark"]::view-transition-new(root) {
+    z-index: 1;
+}
+
+html[data-theme="light"]::view-transition-old(root) {
+    z-index: 1;
+}
+
+html[data-theme="light"]::view-transition-new(root) {
+    animation: theme-circle-grow 0.42s cubic-bezier(0.65, 0, 0.35, 1) both;
+    z-index: 2;
+}
+
+@keyframes theme-circle-grow {
+    from { clip-path: circle(0 at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)); }
+    to { clip-path: circle(var(--theme-transition-radius, 150vmax) at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)); }
+}
+
+@keyframes theme-circle-shrink {
+    from { clip-path: circle(var(--theme-transition-radius, 150vmax) at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)); }
+    to { clip-path: circle(0 at var(--theme-transition-x, 50%) var(--theme-transition-y, 50%)); }
+}

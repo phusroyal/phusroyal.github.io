@@ -38,5 +38,10 @@ exclude:
 # timezone: Asia/Shanghai
 
 collections:
-  - publications
-  - news
+  publications:
+    output: false
+  news:
+    output: false
+  writing:
+    output: true
+    permalink: /writing/:name/

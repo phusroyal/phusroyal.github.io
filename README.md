@@ -17,3 +17,6 @@ Inspirations:
 
 - when blogs become a big thing:
     - https://harrisbio.substack.com/ : substack
+
+Todos:
+- add dots in the background

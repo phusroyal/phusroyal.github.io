@@ -64,21 +64,22 @@ createBubbleInfo = function (hashGroup, n, w, h) {
     var scaleX = function (v) { return (w / 16) * v; };
     var scaleY = function (v) { return (h / 16) * v; };
     var radius = function (v) { var min = 10; var max = wh / 2; return min + ((v / 16) * (max - min)); };
-    var color = function (i) {
-        var c = [
-            "#1f77b4", "#aec7e8",  // blue
-            "#ff7f0e", "#ffbb78",  // orange
-            "#2ca02c", "#98df8a",  // green
-            "#d62728", "#ff9896",  // red
-            "#9467bd", "#c5b0d5",  // purple
-            "#8c564b", "#c49c94",  // brown
-            // "#e377c2", "#f7b6d2",  // pink
-            // "#7f7f7f", "#c7c7c7",  // gray
-            "#bcbd22", "#dbdb8d",  // yellow
-            "#17becf", "#9edae5",  // cyan
-        ];
-        return c[i % c.length];
-    };
+    var styles = window.getComputedStyle(document.documentElement);
+    var colors = [
+        styles.getPropertyValue("--bubble-blue").trim(),
+        styles.getPropertyValue("--bubble-blue-light").trim(),
+        styles.getPropertyValue("--bubble-cognac").trim(),
+        styles.getPropertyValue("--bubble-cognac-light").trim(),
+        styles.getPropertyValue("--bubble-moss").trim(),
+        styles.getPropertyValue("--bubble-moss-light").trim(),
+        styles.getPropertyValue("--bubble-clay").trim(),
+        styles.getPropertyValue("--bubble-clay-light").trim(),
+        styles.getPropertyValue("--bubble-walnut").trim(),
+        styles.getPropertyValue("--bubble-walnut-light").trim(),
+        styles.getPropertyValue("--bubble-brass").trim(),
+        styles.getPropertyValue("--bubble-brass-light").trim()
+    ];
+    var color = function (i) { return colors[i % colors.length]; };
 
     var bubbleInfo = [];
     for (var i = 0; i < n; i++) {
@@ -112,11 +113,19 @@ drawBubble = function (svg, bubbleInfo) {
     }
 }
 
-var canvases = document.querySelectorAll(".bubble-visual-hash");
-canvases.forEach(function (canvas) {
-    var hash = canvas.getAttribute("data-bubble-visual-hash");
-    var width = canvas.viewBox.baseVal.width;
-    var height = canvas.viewBox.baseVal.height;
-    var bubbleInfo = createBubbleInfo(createHashGroupForString(hash), 8, width, height);
-    drawBubble(canvas, bubbleInfo);
-});
+drawBubbleVisualHashes = function () {
+    var canvases = document.querySelectorAll(".bubble-visual-hash");
+
+    canvases.forEach(function (canvas) {
+        var hash = canvas.getAttribute("data-bubble-visual-hash");
+        var width = canvas.viewBox.baseVal.width;
+        var height = canvas.viewBox.baseVal.height;
+        var bubbleInfo = createBubbleInfo(createHashGroupForString(hash), 8, width, height);
+
+        canvas.replaceChildren();
+        drawBubble(canvas, bubbleInfo);
+    });
+};
+
+drawBubbleVisualHashes();
+window.addEventListener("phusroyal-themechange", drawBubbleVisualHashes);
