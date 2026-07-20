@@ -1,0 +1,380 @@
+:root {
+    --bluedot-number: #6A5ACD;
+    --bluedot-question: #C9504B;
+    --bluedot-color: #8A63BA;
+    --bluedot-food: #D87931;
+    --bluedot-sentiment: #D5A234;
+    --bluedot-country: #2F87A8;
+    --bluedot-person: #6B8F59;
+    --bluedot-body-part: #B96B83;
+}
+
+html[data-theme="dark"] {
+    --bluedot-number: #A392E7;
+    --bluedot-question: #E2766E;
+    --bluedot-color: #AF8CDB;
+    --bluedot-food: #E69A55;
+    --bluedot-sentiment: #E1BD61;
+    --bluedot-country: #62B6D6;
+    --bluedot-person: #91B97B;
+    --bluedot-body-part: #DB93A5;
+}
+
+.bluedot-figure {
+    border: 1px solid var(--beyond-line);
+    border-radius: 0.85rem;
+    margin: 2.25rem 0 2.6rem;
+    overflow: hidden;
+}
+
+.bluedot-figure-header {
+    align-items: flex-start;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: space-between;
+    padding: 1.2rem 1.25rem 0;
+}
+
+.bluedot-figure .article-figure-label {
+    color: var(--beyond-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.38rem;
+    text-transform: uppercase;
+}
+
+.bluedot-figure-intro {
+    color: var(--beyond-muted);
+    font-size: 0.92rem !important;
+    line-height: 1.45 !important;
+    margin: 0;
+    max-width: 37rem;
+}
+
+.bluedot-figure[data-bluedot-figure="causal"] .article-figure-label {
+    margin-bottom: 0;
+}
+
+.bluedot-figure[data-bluedot-figure="causal"] .bluedot-figure-intro {
+    max-width: none;
+    white-space: nowrap;
+}
+
+.bluedot-chart-causal svg {
+    overflow: visible;
+}
+
+.bluedot-controls {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.32rem;
+    justify-content: flex-end;
+}
+
+.bluedot-controls button,
+.bluedot-controls select {
+    background: var(--beyond-paper);
+    border: 1px solid var(--beyond-line);
+    border-radius: 0.35rem;
+    color: var(--beyond-ink);
+    font: inherit;
+    font-size: 0.69rem;
+    line-height: 1.15;
+    padding: 0.29rem 0.42rem;
+}
+
+.bluedot-controls button {
+    cursor: pointer;
+}
+
+.bluedot-controls button[aria-pressed="true"] {
+    background: var(--beyond-accent);
+    border-color: var(--beyond-accent);
+    color: var(--beyond-cream);
+}
+
+.bluedot-controls button:focus-visible,
+.bluedot-controls select:focus-visible {
+    outline: 2px solid var(--beyond-brass);
+    outline-offset: 2px;
+}
+
+.bluedot-controls label {
+    color: var(--beyond-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.bluedot-chart {
+    height: 26rem;
+    margin: 1.1rem 1.25rem 0;
+    position: relative;
+}
+
+.bluedot-chart-causal {
+    height: 23rem;
+}
+
+.bluedot-chart canvas,
+.bluedot-chart svg,
+.bluedot-landscape-grid canvas {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.bluedot-chart canvas {
+    cursor: grab;
+}
+
+.bluedot-chart canvas:active {
+    cursor: grabbing;
+}
+
+.bluedot-figure[data-bluedot-figure="gradient"] .bluedot-chart canvas {
+    cursor: pointer;
+}
+
+.bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-header {
+    display: grid;
+    grid-template-areas:
+        "label controls"
+        "intro intro";
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.12rem;
+}
+
+.bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-header > div:first-child {
+    display: contents;
+}
+
+.bluedot-figure[data-bluedot-figure="representation"] .article-figure-label {
+    align-self: center;
+    grid-area: label;
+    margin-bottom: 0;
+}
+
+.bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-intro {
+    grid-area: intro;
+    max-width: none;
+    white-space: nowrap;
+}
+
+.bluedot-figure[data-bluedot-figure="representation"] .bluedot-controls {
+    align-self: center;
+    flex-wrap: nowrap;
+    grid-area: controls;
+    justify-content: center;
+    margin: 0;
+}
+
+.bluedot-feature-controls button {
+    font-size: 0.9rem;
+    min-width: 2rem;
+    padding: 0.22rem 0.3rem;
+    position: relative;
+}
+
+.bluedot-feature-controls button::after {
+    background: var(--beyond-ink);
+    border: 1px solid var(--beyond-line);
+    border-radius: 0.28rem;
+    color: var(--beyond-paper);
+    content: attr(data-tooltip);
+    font: 600 0.67rem/1.1 Lato, sans-serif;
+    left: 50%;
+    opacity: 0;
+    padding: 0.3rem 0.42rem;
+    pointer-events: none;
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    transform: translate(-50%, -0.18rem);
+    transition: opacity 140ms ease, transform 140ms ease;
+    white-space: nowrap;
+    z-index: 3;
+}
+
+.bluedot-feature-controls button:hover::after,
+.bluedot-feature-controls button:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.bluedot-chart-representation {
+    height: auto;
+    min-height: 20rem;
+}
+
+.bluedot-representation-grid {
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    min-height: 20rem;
+}
+
+.bluedot-representation-grid[data-count="1"] {
+    grid-template-columns: 1fr;
+}
+
+.bluedot-representation-panel {
+    border: 1px solid var(--beyond-line);
+    min-height: 15rem;
+    position: relative;
+}
+
+.bluedot-representation-grid[data-count="1"] .bluedot-representation-panel {
+    min-height: 24rem;
+}
+
+.bluedot-representation-panel canvas {
+    cursor: grab;
+}
+
+.bluedot-representation-panel canvas:active {
+    cursor: grabbing;
+}
+
+.bluedot-representation-panel-icon {
+    font-size: 1rem;
+    left: 0.55rem;
+    position: absolute;
+    top: 0.35rem;
+}
+
+.bluedot-chart-status {
+    color: var(--beyond-muted);
+    font-size: 0.82rem !important;
+    inset: 50% auto auto 50%;
+    margin: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.bluedot-figure.is-enhanced .bluedot-chart-status,
+.bluedot-figure.is-enhanced .bluedot-fallback {
+    display: none;
+}
+
+.bluedot-fallback {
+    margin: 1.1rem 1.25rem 0;
+}
+
+.bluedot-fallback img {
+    border: 1px solid var(--beyond-line);
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.bluedot-fallback-pair {
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.bluedot-figure figcaption {
+    border-top: 1px solid var(--beyond-line);
+    color: var(--beyond-muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-top: 1.15rem;
+    padding: 0.85rem 1.25rem;
+}
+
+.bluedot-caption-finding,
+.bluedot-caption-guide {
+    display: block;
+}
+
+.bluedot-caption-guide {
+    font-size: 0.78rem;
+    font-style: italic;
+    margin-top: 0.24rem;
+}
+
+.bluedot-landscape-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 1.1rem 1.25rem 0;
+}
+
+.bluedot-landscape-grid > div {
+    height: 15rem;
+    position: relative;
+}
+
+.bluedot-landscape-grid canvas {
+    height: calc(100% - 1.25rem);
+}
+
+.bluedot-landscape-grid p {
+    color: var(--beyond-muted);
+    font-size: 0.76rem !important;
+    margin: 0.25rem 0 0;
+    text-align: center;
+}
+
+.bluedot-landscape-grid + .bluedot-chart-status {
+    margin: 1rem 1.25rem 0;
+    position: static;
+    text-align: center;
+    transform: none;
+}
+
+@media (max-width: 720px) {
+    .bluedot-figure-header {
+        display: block;
+    }
+
+    .bluedot-controls {
+        justify-content: flex-start;
+        margin-top: 0.9rem;
+    }
+
+    .bluedot-chart {
+        height: 19rem;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+    }
+
+    .bluedot-chart-causal {
+        height: 20rem;
+    }
+
+    .bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-header,
+    .bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-header > div:first-child {
+        display: block;
+    }
+
+    .bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-intro {
+        white-space: normal;
+    }
+
+    .bluedot-figure[data-bluedot-figure="representation"] .bluedot-controls {
+        flex-wrap: wrap;
+        margin-top: 0.55rem;
+    }
+
+    .bluedot-representation-grid[data-count="1"] .bluedot-representation-panel {
+        min-height: 18rem;
+    }
+
+    .bluedot-figure[data-bluedot-figure="causal"] .bluedot-figure-intro {
+        white-space: normal;
+    }
+
+    .bluedot-landscape-grid,
+    .bluedot-fallback-pair {
+        grid-template-columns: 1fr;
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+    }
+
+    .bluedot-landscape-grid > div {
+        height: 14rem;
+    }
+}

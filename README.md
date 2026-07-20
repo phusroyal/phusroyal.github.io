@@ -4,6 +4,12 @@ To build: bundle exec jekyll serve
 To fetch citations: python scripts/update_google_scholar_citations.py
 
 
+Interactive template:
+- example: https://tmlr-beyond-pdf.org/under_review/submission/
+- about: https://tmlr-beyond-pdf.org/about
+- Local reuse: [Research Note Demo](http://127.0.0.1:4000/writing/research-note-demo/)
+
+
 Inspirations:
 - https://onethousandwu.com/
     - nice showcase
@@ -19,4 +25,9 @@ Inspirations:
     - https://harrisbio.substack.com/ : substack
 
 Todos:
-- add dots in the background
+- copiable bibtex
+- arxiv / github icon for each paper
+- remove vihos page
+- arrow in research page is not aligned with the text
+- try `shorter research-note version that moves derivations into expandable sections`
+- anti software overvalidation

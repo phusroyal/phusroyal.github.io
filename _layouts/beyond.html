@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="stylesheet" href="{{ '/assets/css/beyond.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+    {% if page.bluedot_figures %}<link rel="stylesheet" href="{{ '/assets/css/bluedot-q12.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 </head>
 <body class="beyond-page">
     <header class="beyond-nav">
@@ -42,12 +43,20 @@
                     <strong>{{ page.author | default: site.data.profile.navbar_name }}</strong>
                 </div>
                 <div>
-                    <span>Format</span>
+                    <span>{{ page.format_label | default: 'Format' }}</span>
                     <strong>{{ page.format | default: 'Interactive demo' }}</strong>
                 </div>
                 <div>
                     <span>Status</span>
+                    {% if page.status_lines %}
+                    <strong class="beyond-meta-status">
+                        {% for line in page.status_lines %}
+                        <span>{{ line }}</span>
+                        {% endfor %}
+                    </strong>
+                    {% else %}
                     <strong>{{ page.status | default: 'Placeholder' }}</strong>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -55,6 +64,25 @@
         <section class="beyond-content beyond-shell">
             <aside class="beyond-toc" aria-label="Table of contents">
                 <h2>Contents</h2>
+                {% if page.toc %}
+                {% for item in page.toc %}
+                {% if item.children %}
+                <div class="beyond-toc-group">
+                    <div class="beyond-toc-group-heading">
+                        <a href="#{{ item.anchor }}">{{ item.title }}</a>
+                        <button class="beyond-toc-toggle" type="button" data-toc-toggle aria-expanded="false" aria-controls="toc-{{ item.anchor }}" aria-label="Show subsections for {{ item.title }}">+</button>
+                    </div>
+                    <div class="beyond-toc-subsections" id="toc-{{ item.anchor }}" hidden>
+                        {% for child in item.children %}
+                        <a href="#{{ child.anchor }}">{{ child.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                <a href="#{{ item.anchor }}">{{ item.title }}</a>
+                {% endif %}
+                {% endfor %}
+                {% else %}
                 <a href="#interactive-figure-1">Interactive Figure 1</a>
                 <a href="#example-animation">Animated Figure</a>
                 <a href="#interactive-figure-2">Interactive Figure 2</a>
@@ -63,6 +91,7 @@
                 <a href="#example-math">Example Math</a>
                 <a href="#example-code">Example Code</a>
                 <a href="#example-citations">Example Citations</a>
+                {% endif %}
             </aside>
             <article class="beyond-article">
                 {{ content }}
@@ -70,8 +99,9 @@
         </section>
     </main>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuoOXtZMP/7XUzwPTstBe/+rCMRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-7zkQWkzuoOXtZMP/7XUzwPTstBe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
     <script defer src="{{ '/assets/js/beyond-demo.js' | relative_url }}"></script>
+    {% if page.bluedot_figures %}<script defer src="{{ '/assets/js/bluedot-q12.js' | relative_url }}"></script>{% endif %}
 </body>
 </html>

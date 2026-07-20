@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
         renderMathInElement(document.body, {
             delimiters: [
                 {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "\\(", right: "\\)", display: false},
                 {left: "$", right: "$", display: false}
             ],
             throwOnError: false
@@ -13,6 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
         initializePhysicsDemo(demoRoot);
         initializeTangentDemo(demoRoot);
         initializeForceGraph(demoRoot);
+    });
+
+    document.querySelectorAll("[data-toc-toggle]").forEach(function (toggle) {
+        toggle.addEventListener("click", function () {
+            var subsections = document.getElementById(toggle.getAttribute("aria-controls"));
+            var expanded = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!expanded));
+            toggle.textContent = expanded ? "+" : "−";
+            toggle.setAttribute("aria-label", (expanded ? "Show" : "Hide") + " subsections for " + toggle.parentElement.querySelector("a").textContent);
+            subsections.hidden = expanded;
+        });
     });
 });
 

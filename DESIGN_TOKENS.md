@@ -34,4 +34,6 @@ Use this palette for every site surface. Keep color choices semantic: reference 
 
 Use these only inside interactive publication and Writing demos: dark panel `#302823`, bright cognac `#A06B43`, brass `#B49357`, clay `#A86650`, moss `#70785E`, and oat `#C6A98D`. In dark mode, use the corresponding theme variables: night walnut `#181311`, cognac `#C99062`, brass `#D2B36E`, clay `#C97A60`, moss `#899174`, and oat `#D8BCA3`.
 
+BlueDot causal-steering lines use readable icon-matched accents only inside that chart: number violet, question red, color violet, food orange, sentiment yellow, country sea blue, person green, and body-part rose. Use the matching lighter variants in dark mode.
+
 Do not introduce neon cyan, pink, blue, or unrelated color values. Maintain readable text contrast on paper and dark panel surfaces.

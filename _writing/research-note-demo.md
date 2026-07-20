@@ -9,6 +9,7 @@ format: "Research note · Interactive demo"
 status: "Draft placeholder"
 kind: "Research note"
 date: 2026-07-19
+listed: false
 ---
 
 {% include beyond/demo.html %}
