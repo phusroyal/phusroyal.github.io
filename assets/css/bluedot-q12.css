@@ -202,7 +202,84 @@ html[data-theme="dark"] {
     transform: translate(-50%, 0);
 }
 
+.bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-header {
+    display: grid;
+    grid-template-areas:
+        "label feature"
+        "intro boundaries";
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.12rem;
+}
+
+.bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-header > div:first-child {
+    display: contents;
+}
+
+.bluedot-figure[data-bluedot-figure="radial"] .article-figure-label {
+    align-self: center;
+    grid-area: label;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-intro {
+    grid-area: intro;
+    max-width: none;
+    white-space: nowrap;
+}
+
+.bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-header {
+    display: grid;
+    grid-template-areas:
+        "label controls"
+        "intro intro";
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.12rem;
+}
+
+.bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-header > div:first-child {
+    display: contents;
+}
+
+.bluedot-figure[data-bluedot-figure="landscapes"] .article-figure-label {
+    align-self: center;
+    grid-area: label;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-intro {
+    grid-area: intro;
+    max-width: none;
+    white-space: nowrap;
+}
+
+.bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-controls {
+    align-self: center;
+    flex-wrap: nowrap;
+    grid-area: controls;
+    justify-content: center;
+    margin: 0;
+}
+
+.bluedot-radial-feature-control {
+    align-self: center;
+    grid-area: feature;
+    margin: 0;
+}
+
+.bluedot-radial-boundary-controls {
+    align-self: center;
+    grid-area: boundaries;
+    margin: 0;
+}
+
 .bluedot-chart-representation {
+    height: auto;
+    min-height: 20rem;
+}
+
+.bluedot-chart-landscapes {
     height: auto;
     min-height: 20rem;
 }
@@ -297,32 +374,41 @@ html[data-theme="dark"] {
 
 .bluedot-landscape-grid {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin: 1.1rem 1.25rem 0;
+    gap: 0.7rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    min-height: 20rem;
 }
 
-.bluedot-landscape-grid > div {
+.bluedot-landscape-grid[data-count="1"] {
+    grid-template-columns: 1fr;
+}
+
+.bluedot-landscape-panel {
+    border: 1px solid var(--beyond-line);
     height: 15rem;
     position: relative;
 }
 
-.bluedot-landscape-grid canvas {
-    height: calc(100% - 1.25rem);
+.bluedot-landscape-grid[data-count="1"] .bluedot-landscape-panel {
+    height: 24rem;
 }
 
-.bluedot-landscape-grid p {
-    color: var(--beyond-muted);
-    font-size: 0.76rem !important;
-    margin: 0.25rem 0 0;
-    text-align: center;
+.bluedot-landscape-panel canvas {
+    cursor: grab;
+    height: 100%;
+    width: 100%;
 }
 
-.bluedot-landscape-grid + .bluedot-chart-status {
-    margin: 1rem 1.25rem 0;
-    position: static;
-    text-align: center;
-    transform: none;
+.bluedot-landscape-panel canvas:active {
+    cursor: grabbing;
+}
+
+.bluedot-landscape-panel-icon {
+    font-size: 1rem;
+    left: 0.55rem;
+    position: absolute;
+    top: 0.35rem;
+    z-index: 1;
 }
 
 @media (max-width: 720px) {
@@ -350,12 +436,39 @@ html[data-theme="dark"] {
         display: block;
     }
 
+    .bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-header,
+    .bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-header > div:first-child {
+        display: block;
+    }
+
+    .bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-header,
+    .bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-header > div:first-child {
+        display: block;
+    }
+
     .bluedot-figure[data-bluedot-figure="representation"] .bluedot-figure-intro {
+        white-space: normal;
+    }
+
+    .bluedot-figure[data-bluedot-figure="radial"] .article-figure-label,
+    .bluedot-figure[data-bluedot-figure="radial"] .bluedot-figure-intro,
+    .bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-figure-intro {
         white-space: normal;
     }
 
     .bluedot-figure[data-bluedot-figure="representation"] .bluedot-controls {
         flex-wrap: wrap;
+        margin-top: 0.55rem;
+    }
+
+    .bluedot-figure[data-bluedot-figure="landscapes"] .bluedot-controls {
+        flex-wrap: wrap;
+        margin-top: 0.55rem;
+    }
+
+    .bluedot-radial-feature-control,
+    .bluedot-radial-boundary-controls {
+        justify-content: flex-start;
         margin-top: 0.55rem;
     }
 
@@ -374,7 +487,7 @@ html[data-theme="dark"] {
         margin-right: 0.8rem;
     }
 
-    .bluedot-landscape-grid > div {
+    .bluedot-landscape-panel {
         height: 14rem;
     }
 }

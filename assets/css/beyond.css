@@ -6,6 +6,7 @@
     --beyond-accent: #7A5237;
     --beyond-panel: #302823;
     --beyond-cognac: #A06B43;
+    --beyond-strong: #5A4032;
     --beyond-brass: #B49357;
     --beyond-clay: #A86650;
     --beyond-moss: #70785E;
@@ -27,6 +28,7 @@ html[data-theme="dark"] {
     --beyond-accent: #C99062;
     --beyond-panel: #181311;
     --beyond-cognac: #C99062;
+    --beyond-strong: #E0AF7C;
     --beyond-brass: #D2B36E;
     --beyond-clay: #C97A60;
     --beyond-moss: #899174;
@@ -334,7 +336,72 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
 }
 
 .beyond-article strong {
+    color: var(--beyond-strong);
+}
+
+.article-architecture {
+    margin: 1.5rem 0;
+}
+
+.article-architecture img {
+    border: 1px solid var(--beyond-line);
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.article-architecture figcaption {
+    color: var(--beyond-muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin-top: 0.55rem;
+}
+
+.beyond-article .article-citation {
     color: var(--beyond-accent);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.beyond-article .article-citation:hover,
+.beyond-article .article-citation:focus-visible {
+    color: var(--beyond-strong);
+    text-decoration: underline;
+}
+
+.beyond-article .article-citation {
+    position: relative;
+}
+
+.beyond-article .article-citation::after {
+    background: var(--beyond-control-background);
+    border: 1px solid var(--beyond-control-border);
+    border-radius: 0.4rem;
+    box-shadow: 0 0.45rem 1.2rem rgba(0, 0, 0, 0.18);
+    color: var(--beyond-canvas-text);
+    content: attr(data-citation);
+    font: 400 0.76rem/1.45 "Lato", sans-serif;
+    left: 50%;
+    max-width: min(22rem, calc(100vw - 2rem));
+    opacity: 0;
+    padding: 0.6rem 0.7rem;
+    pointer-events: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    transform: translate(-50%, -0.18rem);
+    transition: opacity 140ms ease, transform 140ms ease;
+    width: max-content;
+    z-index: 5;
+}
+
+.beyond-article .article-citation:hover::after,
+.beyond-article .article-citation:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.article-references li {
+    scroll-margin-top: 6rem;
 }
 
 .beyond-article .katex {
@@ -356,11 +423,10 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
 
 .beyond-article table {
     border-collapse: collapse;
-    display: block;
+    display: table;
     font-size: 0.88rem;
-    margin: 1.35rem 0;
+    margin: 1.35rem auto;
     max-width: 100%;
-    overflow-x: auto;
     white-space: nowrap;
 }
 
@@ -374,6 +440,26 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
 .beyond-article th:first-child,
 .beyond-article td:first-child {
     text-align: left;
+}
+
+.metric-direction {
+    display: inline-block;
+    line-height: 1;
+    transform: translateY(-0.08em);
+}
+
+.interpretation-note {
+    color: var(--beyond-muted);
+    display: inline-block;
+    margin-top: 0.08rem;
+}
+
+.beyond-article p.interpretation-note {
+    margin: 0.12rem 0 1.15rem;
+}
+
+.beyond-article p + p.interpretation-note {
+    margin-top: -0.7rem;
 }
 
 .basin-takeaway {

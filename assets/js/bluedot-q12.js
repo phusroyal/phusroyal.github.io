@@ -187,7 +187,7 @@
                 icon.textContent = icons[feature.name];
                 icon.dataset.feature = feature.name;
                 svg.appendChild(icon);
-                var label = createSvgElement("text", {x: legendX + 24, y: legendY - 1, fill: focused || pinned ? lineColors[feature.name] : palette.ink, "font-size": focused || pinned ? 13 : 12, "font-weight": focused || pinned ? 700 : 400, opacity: legendOpacity, "pointer-events": "all", cursor: "pointer"});
+                var label = createSvgElement("text", {x: legendX + 24, y: legendY - 1, fill: lineColors[feature.name], "font-size": focused || pinned ? 13 : 12, "font-weight": focused || pinned ? 700 : 400, opacity: legendOpacity, "pointer-events": "all", cursor: "pointer"});
                 label.textContent = feature.name.replace("_", " ");
                 label.dataset.feature = feature.name;
                 svg.appendChild(label);
@@ -274,7 +274,7 @@
                 context.font = (focused || pinned ? "700 " : "") + "13px Lato, sans-serif";
                 context.fillStyle = pointColors[feature.name];
                 context.fillText(icons[feature.name], legendX, legendY);
-                context.fillStyle = focused || pinned ? pointColors[feature.name] : palette.ink;
+                context.fillStyle = pointColors[feature.name];
                 context.fillText(feature.name.replace("_", " "), legendX + 24, legendY - 1);
                 state.legendItems.push({feature: feature.name, x: legendX - 5, y: legendY - 17, width: 106, height: 23});
             });
@@ -461,12 +461,12 @@
         function draw() {
             var frame = canvasContext(canvas);
             var context = frame.context;
-            var chart = {width: frame.width, height: frame.height, left: 42, right: frame.width - 18, top: 16, bottom: frame.height - 58};
+            var chart = {width: frame.width, height: frame.height, left: 58, right: frame.width - 18, top: 46, bottom: frame.height - 58};
             var active = data.features[state.feature];
             var xRange = {min: active.xAxis[0], max: active.xAxis[active.xAxis.length - 1]};
             var yRange = {min: active.yAxis[0], max: active.yAxis[active.yAxis.length - 1]};
             var palette = colors();
-            drawAxes(context, chart, xRange, yRange, {x: "activation PC1", y: "activation PC2"});
+            drawAxes(context, chart, xRange, yRange, {x: "activation PC1", y: "activation PC2", yLabelX: 14});
             var values = active.logitGrid.reduce(function (all, row) { return all.concat(row); }, []);
             var valueRange = range(values);
             active.logitGrid.forEach(function (row, yIndex) { row.forEach(function (value, xIndex) {
@@ -477,16 +477,15 @@
             }); });
             var mapX = function (value) { return scale(value, xRange, chart.left, chart.right); };
             var mapY = function (value) { return scale(value, yRange, chart.bottom, chart.top); };
-            if (state.samples) {
-                active.points.forEach(function (point, index) {
-                    context.fillStyle = active.labels[index] ? palette.accent : palette.moss;
-                    context.globalAlpha = 0.62;
-                    context.beginPath();
-                    context.arc(mapX(point[0]), mapY(point[1]), 2, 0, Math.PI * 2);
-                    context.fill();
-                });
-                context.globalAlpha = 1;
-            }
+            var pointColors = featureColors(palette);
+            active.points.forEach(function (point, index) {
+                context.fillStyle = active.labels[index] ? pointColors[state.feature] : palette.ink;
+                context.globalAlpha = active.labels[index] ? 0.82 : 0.68;
+                context.beginPath();
+                context.arc(mapX(point[0]), mapY(point[1]), active.labels[index] ? 2.4 : 2.1, 0, Math.PI * 2);
+                context.fill();
+            });
+            context.globalAlpha = 1;
             if (state.boundary === "mahalanobis") {
                 active.ellipseLevels.forEach(function (level) { drawEllipse(context, active.ellipseCenter, active.ellipseCovariance, level, mapX, mapY, palette.brass); });
             } else {
@@ -502,12 +501,10 @@
             }
             context.fillStyle = palette.ink;
             context.font = "12px Lato, sans-serif";
-            context.fillText("Mahalanobis AUC " + active.metrics.mahalanobis_radius_auc.toFixed(4), chart.left + 8, chart.top + 18);
-            context.fillText("linear AUC " + active.metrics.linear_probe_auc.toFixed(4), chart.left + 8, chart.top + 35);
+            context.fillText("Mahalanobis AUC " + active.metrics.mahalanobis_radius_auc.toFixed(4) + " · Linear AUC " + active.metrics.linear_probe_auc.toFixed(4), chart.left, 31);
         }
         figure.querySelector("[data-radial-feature]").addEventListener("change", function (event) { state.feature = event.target.value; draw(); });
         figure.querySelectorAll("[data-radial-boundary]").forEach(function (button) { button.addEventListener("click", function () { state.boundary = button.dataset.radialBoundary; figure.querySelectorAll("[data-radial-boundary]").forEach(function (item) { item.setAttribute("aria-pressed", String(item === button)); }); draw(); }); });
-        figure.querySelector("[data-radial-samples]").addEventListener("click", function (button) { state.samples = !state.samples; button.currentTarget.textContent = state.samples ? "Hide samples" : "Show samples"; button.currentTarget.setAttribute("aria-pressed", String(state.samples)); draw(); });
         status.textContent = "";
         draw();
         return {draw: draw};
@@ -541,29 +538,178 @@
     }
 
     function renderLandscapes(figure, data) {
+        var stage = figure.querySelector(".bluedot-landscape-grid");
         var status = figure.querySelector("[data-bluedot-status]");
-        var canvases = figure.querySelectorAll("[data-landscape]");
-        function drawOne(canvas, name) {
+        var state = {features: ["country", "body_part"], views: {country: {yaw: -0.82, pitch: 0.62}, body_part: {yaw: -0.82, pitch: 0.62}}};
+        var viridis = ["#440154", "#414487", "#2A788E", "#22A884", "#7AD151", "#FDE725"];
+
+        function colorAt(amount) {
+            var position = Math.max(0, Math.min(1, amount)) * (viridis.length - 1);
+            var index = Math.min(viridis.length - 2, Math.floor(position));
+            return mix(viridis[index], viridis[index + 1], position - index);
+        }
+
+        function project(point, view) {
+            var cosine = Math.cos(view.yaw);
+            var sine = Math.sin(view.yaw);
+            var rotatedX = point.x * cosine - point.y * sine;
+            var rotatedY = point.x * sine + point.y * cosine;
+            return {
+                x: rotatedX,
+                y: rotatedY * Math.sin(view.pitch) + point.z * Math.cos(view.pitch),
+                depth: rotatedY * Math.cos(view.pitch) + point.z * Math.sin(view.pitch)
+            };
+        }
+
+        function canvasPoint(point, centerX, centerY, scaleValue) {
+            return {x: centerX + point.x * scaleValue, y: centerY - point.y * scaleValue};
+        }
+
+        function line(context, points, color, width) {
+            context.strokeStyle = color;
+            context.lineWidth = width;
+            context.beginPath();
+            points.forEach(function (point, index) {
+                if (index === 0) { context.moveTo(point.x, point.y); } else { context.lineTo(point.x, point.y); }
+            });
+            context.stroke();
+        }
+
+        function drawOne(canvas, feature) {
             var frame = canvasContext(canvas);
             var context = frame.context;
-            var chart = {width: frame.width, height: frame.height, left: 28, right: frame.width - 8, top: 8, bottom: frame.height - 24};
-            var grid = data.features[name].grid;
+            var grid = data.features[feature].grid;
             var valueRange = range(grid.reduce(function (all, row) { return all.concat(row); }, []));
             var palette = colors();
+            var view = state.views[feature];
+            var centerX = frame.width * 0.53;
+            var centerY = frame.height * 0.61;
+            var scaleValue = Math.min(frame.width, frame.height) * 0.31;
+            var maxRow = grid.length - 1;
+            var maxColumn = grid[0].length - 1;
+
+            function pointAt(row, column, value) {
+                return project({
+                    x: column / maxColumn * 2 - 1,
+                    y: row / maxRow * 2 - 1,
+                    z: (value - valueRange.min) / (valueRange.max - valueRange.min || 1) * 1.55
+                }, view);
+            }
+
             context.fillStyle = palette.paper;
             context.fillRect(0, 0, frame.width, frame.height);
-            grid.forEach(function (row, rowIndex) { row.forEach(function (value, columnIndex) {
-                context.fillStyle = mix(palette.moss, palette.accent, (value - valueRange.min) / (valueRange.max - valueRange.min || 1));
-                context.fillRect(chart.left + columnIndex / row.length * (chart.right - chart.left), chart.top + (grid.length - rowIndex - 1) / grid.length * (chart.bottom - chart.top), (chart.right - chart.left) / row.length + 1, (chart.bottom - chart.top) / grid.length + 1);
-            }); });
-            drawZeroContour(context, grid, chart, palette.cream || palette.paper);
+
+            var floor = [[-1, -1], [1, -1], [1, 1], [-1, 1], [-1, -1]].map(function (coordinates) {
+                return canvasPoint(project({x: coordinates[0], y: coordinates[1], z: 0}, view), centerX, centerY, scaleValue);
+            });
+            line(context, floor, palette.line, 1);
+            for (var floorStep = -1; floorStep <= 1.001; floorStep += 0.5) {
+                line(context, [canvasPoint(project({x: floorStep, y: -1, z: 0}, view), centerX, centerY, scaleValue), canvasPoint(project({x: floorStep, y: 1, z: 0}, view), centerX, centerY, scaleValue)], palette.line, 0.7);
+                line(context, [canvasPoint(project({x: -1, y: floorStep, z: 0}, view), centerX, centerY, scaleValue), canvasPoint(project({x: 1, y: floorStep, z: 0}, view), centerX, centerY, scaleValue)], palette.line, 0.7);
+            }
+
+            var surfaces = [];
+            var step = 2;
+            for (var row = 0; row < maxRow; row += step) {
+                for (var column = 0; column < maxColumn; column += step) {
+                    var nextRow = Math.min(maxRow, row + step);
+                    var nextColumn = Math.min(maxColumn, column + step);
+                    var values = [grid[row][column], grid[row][nextColumn], grid[nextRow][nextColumn], grid[nextRow][column]];
+                    var points = [pointAt(row, column, values[0]), pointAt(row, nextColumn, values[1]), pointAt(nextRow, nextColumn, values[2]), pointAt(nextRow, column, values[3])];
+                    surfaces.push({points: points, value: (values[0] + values[1] + values[2] + values[3]) / 4, depth: points.reduce(function (total, point) { return total + point.depth; }, 0) / 4});
+                }
+            }
+            surfaces.sort(function (first, second) { return first.depth - second.depth; }).forEach(function (surface) {
+                context.fillStyle = colorAt((surface.value - valueRange.min) / (valueRange.max - valueRange.min || 1));
+                context.beginPath();
+                surface.points.forEach(function (point, index) {
+                    var mapped = canvasPoint(point, centerX, centerY, scaleValue);
+                    if (index === 0) { context.moveTo(mapped.x, mapped.y); } else { context.lineTo(mapped.x, mapped.y); }
+                });
+                context.closePath();
+                context.fill();
+                context.strokeStyle = "rgba(255, 255, 255, 0.17)";
+                context.lineWidth = 0.35;
+                context.stroke();
+            });
+
+            var axisOrigin = canvasPoint(project({x: -1, y: -1, z: 0}, view), centerX, centerY, scaleValue);
+            var axisX = canvasPoint(project({x: 1, y: -1, z: 0}, view), centerX, centerY, scaleValue);
+            var axisY = canvasPoint(project({x: -1, y: 1, z: 0}, view), centerX, centerY, scaleValue);
+            var axisZ = canvasPoint(project({x: -1, y: -1, z: 1.55}, view), centerX, centerY, scaleValue);
+            context.globalAlpha = 0.78;
+            line(context, [axisOrigin, axisX], palette.ink, 1.1);
+            line(context, [axisOrigin, axisY], palette.ink, 1.1);
+            line(context, [axisOrigin, axisZ], palette.ink, 1.1);
+            context.globalAlpha = 1;
             context.fillStyle = palette.ink;
             context.font = "11px Lato, sans-serif";
-            context.fillText("logit = 0", chart.left + 4, chart.top + 14);
+            context.fillText("act. PC1", axisX.x + 5, axisX.y + 13);
+            context.fillText("act. PC2", axisY.x - 44, axisY.y + 13);
+            context.fillText("logit", Math.max(36, axisZ.x - 22), Math.max(38, axisZ.y - 6));
         }
-        function draw() { canvases.forEach(function (canvas) { drawOne(canvas, canvas.dataset.landscape); }); }
+
+        function draw() {
+            stage.querySelectorAll("canvas").forEach(function (canvas) { drawOne(canvas, canvas.dataset.feature); });
+        }
+
+        function bindDrag(canvas, feature) {
+            var drag = {active: false, pointerX: 0, pointerY: 0};
+            canvas.addEventListener("pointerdown", function (event) { drag.active = true; drag.pointerX = event.clientX; drag.pointerY = event.clientY; canvas.setPointerCapture(event.pointerId); });
+            canvas.addEventListener("pointermove", function (event) {
+                if (!drag.active) { return; }
+                state.views[feature].yaw += (event.clientX - drag.pointerX) * 0.012;
+                state.views[feature].pitch = Math.max(0.16, Math.min(1.2, state.views[feature].pitch + (event.clientY - drag.pointerY) * 0.01));
+                drag.pointerX = event.clientX;
+                drag.pointerY = event.clientY;
+                drawOne(canvas, feature);
+            });
+            canvas.addEventListener("pointerup", function () { drag.active = false; });
+            canvas.addEventListener("pointercancel", function () { drag.active = false; });
+        }
+
+        function rebuildGrid() {
+            stage.replaceChildren();
+            stage.dataset.count = String(state.features.length);
+            state.features.forEach(function (feature) {
+                if (!state.views[feature]) { state.views[feature] = {yaw: -0.82, pitch: 0.62}; }
+                var panel = document.createElement("div");
+                var icon = document.createElement("span");
+                var canvas = document.createElement("canvas");
+                panel.className = "bluedot-landscape-panel";
+                icon.className = "bluedot-landscape-panel-icon";
+                icon.textContent = featureIcons()[feature];
+                icon.setAttribute("aria-hidden", "true");
+                canvas.dataset.feature = feature;
+                canvas.setAttribute("role", "img");
+                canvas.setAttribute("aria-label", feature.replace("_", " ") + " three-dimensional score landscape");
+                panel.appendChild(icon);
+                panel.appendChild(canvas);
+                stage.appendChild(panel);
+                bindDrag(canvas, feature);
+            });
+            draw();
+        }
+
+        function updateFeatureButtons() {
+            figure.querySelectorAll("[data-landscape-feature]").forEach(function (button) {
+                button.setAttribute("aria-pressed", String(state.features.indexOf(button.dataset.landscapeFeature) !== -1));
+            });
+        }
+
+        figure.querySelectorAll("[data-landscape-feature]").forEach(function (button) {
+            button.addEventListener("click", function () {
+                var feature = button.dataset.landscapeFeature;
+                var index = state.features.indexOf(feature);
+                if (index === -1) { state.features.push(feature); }
+                else if (state.features.length > 1) { state.features.splice(index, 1); }
+                updateFeatureButtons();
+                rebuildGrid();
+            });
+        });
         status.textContent = "";
-        draw();
+        updateFeatureButtons();
+        rebuildGrid();
         return {draw: draw};
     }
 

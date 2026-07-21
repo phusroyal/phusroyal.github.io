@@ -27,6 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
             subsections.hidden = expanded;
         });
     });
+
+    document.querySelectorAll(".article-citation").forEach(function (citation) {
+        var reference = document.querySelector(citation.getAttribute("href"));
+        if (reference) {
+            citation.dataset.citation = reference.textContent.trim();
+        }
+    });
+
 });
 
 function readDemoColors() {
