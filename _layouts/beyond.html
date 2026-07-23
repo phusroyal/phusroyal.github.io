@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="stylesheet" href="{{ '/assets/css/beyond.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if page.bluedot_figures %}<link rel="stylesheet" href="{{ '/assets/css/bluedot-q12.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
+    {% if page.bluedot_q3_figures %}<link rel="stylesheet" href="{{ '/assets/css/bluedot-q3.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 </head>
 <body class="beyond-page">
     <header class="beyond-nav">
@@ -74,7 +75,18 @@
                     </div>
                     <div class="beyond-toc-subsections" id="toc-{{ item.anchor }}" hidden>
                         {% for child in item.children %}
+                        {% if child.children %}
+                        <div class="beyond-toc-subgroup">
+                            <a href="#{{ child.anchor }}">{{ child.title }}</a>
+                            <div class="beyond-toc-subsubsections">
+                                {% for grandchild in child.children %}
+                                <a href="#{{ grandchild.anchor }}">{{ grandchild.title }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% else %}
                         <a href="#{{ child.anchor }}">{{ child.title }}</a>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -103,5 +115,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
     <script defer src="{{ '/assets/js/beyond-demo.js' | relative_url }}"></script>
     {% if page.bluedot_figures %}<script defer src="{{ '/assets/js/bluedot-q12.js' | relative_url }}"></script>{% endif %}
+    {% if page.bluedot_q3_figures %}<script defer src="{{ '/assets/js/bluedot-q3.js' | relative_url }}"></script>{% endif %}
 </body>
 </html>

@@ -307,8 +307,28 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     font-weight: 400;
 }
 
+.beyond-toc-subgroup {
+    display: grid;
+    gap: 0.34rem;
+}
+
+.beyond-toc-subsubsections {
+    display: grid;
+    gap: 0.3rem;
+    padding-left: 0.7rem;
+}
+
+.beyond-toc-subsubsections a {
+    font-size: 0.68rem;
+    opacity: 0.88;
+}
+
 .beyond-article {
     max-width: 760px;
+}
+
+.beyond-article :is(h2, h3, h4) {
+    scroll-margin-top: 6rem;
 }
 
 .beyond-article > h2 {
@@ -430,6 +450,60 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     white-space: nowrap;
 }
 
+.article-table-caption,
+.bluedot-figure {
+    scroll-margin-top: 6rem;
+}
+
+.beyond-article .article-reference {
+    border-bottom: 1px solid currentColor;
+    color: var(--beyond-accent);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.beyond-article .article-reference:hover,
+.beyond-article .article-reference:focus-visible {
+    color: var(--beyond-strong);
+}
+
+.beyond-article .article-section-reference {
+    color: var(--beyond-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+    text-underline-offset: 0.16em;
+}
+
+.beyond-article .article-section-reference:hover,
+.beyond-article .article-section-reference:focus-visible {
+    color: var(--beyond-strong);
+}
+
+.beyond-article .article-section-highlight {
+    animation: article-section-highlight 2.4s ease-out;
+    border-radius: 0.18rem;
+}
+
+@keyframes article-section-highlight {
+    0%, 55% {
+        background: color-mix(in srgb, var(--beyond-accent) 20%, transparent);
+        box-shadow: 0 0 0 0.28rem color-mix(in srgb, var(--beyond-accent) 10%, transparent);
+    }
+
+    100% {
+        background: transparent;
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .beyond-article .article-section-highlight {
+        animation: none;
+        background: color-mix(in srgb, var(--beyond-accent) 15%, transparent);
+    }
+}
+
 .beyond-article th,
 .beyond-article td {
     border-bottom: 1px solid var(--beyond-line);
@@ -469,6 +543,14 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     border-radius: 0.65rem;
     margin: 1.4rem 0 2.4rem;
     padding: 1.35rem;
+}
+
+.bluedot-series-note {
+    border-left: 2px solid var(--beyond-line);
+    color: var(--beyond-muted);
+    font-size: 0.88rem;
+    margin: 1.25rem 0 -0.4rem;
+    padding-left: 0.75rem;
 }
 
 .basin-takeaway > p {

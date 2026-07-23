@@ -1,0 +1,24 @@
+{
+  "geometries": {
+    "sphere_shell": {
+      "ablation_auc_drop": 0.4675,
+      "ablation_target_auc": 0.5317,
+      "target_delta": 3.5004,
+      "swap_target_shift": 4.4433,
+      "swap_specificity": 92.0223,
+      "path_target_delta": 3.4963,
+      "path_monotonic_fraction": 1.0,
+      "specificity_ratio": 73.4252
+    },
+    "helix_tube": {
+      "ablation_auc_drop": 0.4279,
+      "ablation_target_auc": 0.5654,
+      "target_delta": 2.6884,
+      "swap_target_shift": 7.1863,
+      "swap_specificity": 128.0430,
+      "path_target_delta": 5.1727,
+      "path_monotonic_fraction": 1.0,
+      "specificity_ratio": 47.3151
+    }
+  }
+}

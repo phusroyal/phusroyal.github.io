@@ -1,0 +1,22 @@
+{
+  "geometries": {
+    "sphere_shell": {
+      "stages": {
+        "bottleneck": { "causal_target_delta": 0.0187, "complement_probe_auc": 0.9996, "coverage_entropy": 0.7971, "geometry_probe_auc": 0.2021, "linear_probe_auc": 0.9996 },
+        "mixot": { "causal_target_delta": 0.0206, "complement_probe_auc": 0.9981, "coverage_entropy": 0.9991, "geometry_probe_auc": 0.5585, "linear_probe_auc": 0.9993 },
+        "classot": { "causal_target_delta": 0.0188, "complement_probe_auc": 0.9998, "coverage_entropy": 0.9970, "geometry_probe_auc": 0.9998, "linear_probe_auc": 0.9998 },
+        "gfal": { "causal_target_delta": 3.0845, "complement_probe_auc": 0.5758, "coverage_entropy": 0.9993, "geometry_probe_auc": 0.9997, "linear_probe_auc": 0.5743 },
+        "gfal_plus": { "causal_target_delta": 3.5004, "complement_probe_auc": 0.5728, "coverage_entropy": 0.9997, "geometry_probe_auc": 0.9997, "linear_probe_auc": 0.6204 }
+      }
+    },
+    "helix_tube": {
+      "stages": {
+        "bottleneck": { "causal_target_delta": 0.0357, "complement_probe_auc": 0.9997, "coverage_entropy": 0.6561, "geometry_probe_auc": 0.1182, "linear_probe_auc": 0.9997 },
+        "mixot": { "causal_target_delta": 0.0368, "complement_probe_auc": 0.9994, "coverage_entropy": 0.9942, "geometry_probe_auc": 0.3095, "linear_probe_auc": 0.9994 },
+        "classot": { "causal_target_delta": 0.0389, "complement_probe_auc": 0.9996, "coverage_entropy": 0.9953, "geometry_probe_auc": 0.9996, "linear_probe_auc": 0.9997 },
+        "gfal": { "causal_target_delta": 1.8980, "complement_probe_auc": 0.6071, "coverage_entropy": 0.7510, "geometry_probe_auc": 0.9940, "linear_probe_auc": 0.6710 },
+        "gfal_plus": { "causal_target_delta": 2.6884, "complement_probe_auc": 0.5681, "coverage_entropy": 0.7787, "geometry_probe_auc": 0.9927, "linear_probe_auc": 0.5992 }
+      }
+    }
+  }
+}

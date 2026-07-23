@@ -35,6 +35,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    document.querySelectorAll(".article-section-reference").forEach(function (reference) {
+        reference.addEventListener("click", function (event) {
+            var target = document.querySelector(reference.getAttribute("href"));
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+            window.history.pushState(null, "", reference.getAttribute("href"));
+            target.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                block: "start"
+            });
+
+            window.setTimeout(function () {
+                document.querySelectorAll(".article-section-highlight").forEach(function (highlighted) {
+                    highlighted.classList.remove("article-section-highlight");
+                });
+                target.classList.add("article-section-highlight");
+                window.setTimeout(function () {
+                    target.classList.remove("article-section-highlight");
+                }, 2400);
+            }, 250);
+        });
+    });
+
 });
 
 function readDemoColors() {
