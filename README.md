@@ -27,14 +27,8 @@ Inspirations:
 Todos:
 - copiable bibtex
 - arxiv / github icon for each paper
-- remove vihos page
-- arrow in research page is not aligned with the text
-- try `shorter research-note version that moves derivations into expandable sections`
-- anti software overvalidation
 - q12
-    - add repo
-    - this is first article of my series of articles on BlueDot's Technical AI Safety Puzzle #1.
-    - `Train a new model with a more interesting representation.` to link of q3
+    - add repo3
 - update https://github.com/phusroyal/Phu-BlueDot_1st_puzzle readme
 
 Designs:

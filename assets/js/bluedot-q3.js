@@ -322,10 +322,16 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function initialiseWidgets() {
         observeFigures();
         initialiseLossDiagrams();
-    });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialiseWidgets, { once: true });
+    } else {
+        initialiseWidgets();
+    }
 
     window.addEventListener("phusroyal-themechange", () => window.requestAnimationFrame(() => state.redraws.forEach((redraw) => redraw())));
 })();
