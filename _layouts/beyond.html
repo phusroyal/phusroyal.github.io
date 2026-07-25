@@ -38,7 +38,7 @@
         </section>
 
         <section class="beyond-meta">
-            <div class="beyond-shell beyond-meta-grid">
+            <div class="beyond-shell beyond-meta-grid{% if page.code_url %} beyond-meta-grid--with-code{% endif %}">
                 <div>
                     <span>Author</span>
                     <strong>{{ page.author | default: site.data.profile.navbar_name }}</strong>
@@ -59,6 +59,12 @@
                     <strong>{{ page.status | default: 'Placeholder' }}</strong>
                     {% endif %}
                 </div>
+                {% if page.code_url %}
+                <div>
+                    <span>Code</span>
+                    <strong><a href="{{ page.code_url }}" target="_blank" rel="noreferrer">{{ page.code_label | default: page.code_url }}</a></strong>
+                </div>
+                {% endif %}
             </div>
         </section>
 

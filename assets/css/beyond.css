@@ -202,6 +202,10 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     padding-top: 1.35rem;
 }
 
+.beyond-meta-grid--with-code {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .beyond-meta-grid > div > span {
     color: var(--beyond-muted);
     display: block;
@@ -217,6 +221,16 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     font-size: 0.92rem;
     font-weight: 700;
     line-height: 1.35;
+}
+
+.beyond-meta strong a {
+    color: inherit;
+    text-decoration-color: var(--beyond-accent);
+    text-underline-offset: 0.2em;
+}
+
+.beyond-meta strong a:hover {
+    color: var(--beyond-accent);
 }
 
 .beyond-meta-status span {
