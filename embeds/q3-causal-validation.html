@@ -1,0 +1,43 @@
+---
+layout: null
+permalink: /embeds/q3-causal-validation/
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueDot Q3 Causal-Use Validation</title>
+    <link rel="stylesheet" href="{{ '/assets/css/beyond.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/bluedot-q3.css' | relative_url }}">
+    <style>
+        body { margin: 0; min-width: 0; }
+        .q3-figure { margin: 0 !important; }
+        .q3-figure-header { padding: .65rem .75rem 0 !important; }
+        .q3-figure-intro { font-size: .78rem; line-height: 1.3; }
+        .q3-causal-story { margin: .65rem .75rem 0 !important; }
+        .q3-causal-checklist { gap: .45rem !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        .q3-causal-check { min-height: 7.4rem !important; padding: .55rem .6rem !important; }
+        .q3-causal-check-number { font-size: .58rem; }
+        .q3-causal-check-title { font-size: .78rem; }
+        .q3-causal-check-question { font-size: .68rem; line-height: 1.25; margin-top: .2rem; }
+        .q3-causal-check-action, .q3-causal-check-observation { font-size: .64rem; line-height: 1.25; margin-top: .3rem; padding-top: .25rem; }
+        .q3-causal-check-values { font-size: .6rem; margin-top: .25rem; }
+        .q3-causal-detail { gap: .55rem; grid-template-columns: 1.1fr 1fr !important; margin-top: .45rem !important; padding: .55rem .6rem !important; }
+        .q3-causal-detail p { font-size: .7rem; line-height: 1.35; margin-top: .2rem; }
+        .q3-causal-detail-evidence { gap: .3rem; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        .q3-causal-detail-evidence strong, .q3-causal-detail-evidence small { font-size: .65rem; }
+        .q3-figure figcaption { font-size: .74rem; line-height: 1.3; margin-top: .65rem !important; padding: .55rem .75rem !important; }
+        .q3-caption-guide { display: none; }
+    </style>
+</head>
+<body>
+    <figure class="q3-figure" data-q3-figure="causal" data-q3-src="{{ '/assets/data/writing/bluedot-puzzle-1/q3/causal-validation.json' | relative_url }}">
+        <div class="q3-figure-header"><div><p class="article-figure-label">Figure 5 · Causal-use validation</p><p class="q3-figure-intro">Each check changes only the three reserved geometry channels, then asks whether the frozen classifier responds in the predicted direction.</p></div></div>
+        <div class="q3-causal-story" data-q3-causal-story aria-live="polite"><p class="q3-chart-status" data-q3-status>Loading causal-use evidence…</p></div>
+        <div class="q3-fallback"><img src="{{ '/assets/images/writing/bluedot-puzzle-1/q3/causal-validation.png' | relative_url }}" alt="Static causal-use validation comparison for sphere-shell and helix-tube models."></div>
+        <figcaption><span class="q3-caption-finding">Together, the four checks show that geometry is not decorative: altering it changes the model's country prediction in the expected way.</span><span class="q3-caption-guide">Select a check for its causal interpretation; Table 6 retains the full technical record.</span></figcaption>
+    </figure>
+    <script src="{{ '/assets/js/bluedot-q3.js' | relative_url }}"></script>
+</body>
+</html>

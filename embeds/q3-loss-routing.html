@@ -1,0 +1,38 @@
+---
+layout: null
+permalink: /embeds/q3-loss-routing/
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueDot Q3 Loss Routing</title>
+    <link rel="stylesheet" href="{{ '/assets/css/beyond.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/bluedot-q3.css' | relative_url }}">
+    <style>
+        body { margin: 0; min-width: 0; }
+        .q3-loss-diagram { margin: 0 !important; padding: .7rem !important; }
+        .q3-loss-diagram-title { font-size: .86rem; }
+        .q3-loss-diagram-tabs button { font-size: .7rem; padding: .28rem .5rem; }
+        .q3-loss-grid { gap: .45rem !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; margin-top: .6rem !important; }
+        .q3-loss-card { padding: .55rem !important; }
+        .q3-loss-card span { font-size: .57rem; }
+        .q3-loss-card strong { font-size: .77rem; margin: .2rem 0 !important; }
+        .q3-loss-card p { font-size: .68rem; line-height: 1.35; }
+        .q3-loss-card--complement { grid-column: span 3; }
+    </style>
+</head>
+<body>
+    <section class="q3-loss-diagram" data-q3-loss-diagram aria-label="GFAL and GFAL plus loss-routing diagram">
+        <div class="q3-loss-diagram-header"><p class="q3-loss-diagram-title">How the model is pressured to use the manifold</p><div class="q3-loss-diagram-tabs" role="group" aria-label="Loss configuration"><button type="button" data-q3-loss-view="gfal" aria-pressed="true">GFAL</button><button type="button" data-q3-loss-view="gfal-plus" aria-pressed="false">GFAL+</button></div></div>
+        <div class="q3-loss-grid">
+            <div class="q3-loss-card q3-loss-card--geometry"><span>Reserved channels</span><strong>Manifold geometry</strong><p>Class-conditional matching and radius pressure shape the three-channel code.</p></div>
+            <div class="q3-loss-card q3-loss-card--tail"><span>Frozen tail</span><strong>Causal replacement + tail fitting</strong><p>Positive and negative anchors must move the country logit in the expected direction.</p></div>
+            <div class="q3-loss-card q3-loss-card--adversary"><span>Full hidden2</span><strong>Anti-linear adversary</strong><p>Gradient reversal weakens an easy linear country readout across all 64 channels.</p></div>
+            <div class="q3-loss-card q3-loss-card--complement" data-q3-loss-extra hidden><span>Complement only</span><strong>Complement adversary</strong><p>GFAL+ pressures the remaining 61 channels not to carry a backup country shortcut.</p></div>
+        </div>
+    </section>
+    <script src="{{ '/assets/js/bluedot-q3.js' | relative_url }}"></script>
+</body>
+</html>

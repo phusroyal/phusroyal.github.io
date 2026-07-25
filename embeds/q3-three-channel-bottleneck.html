@@ -1,0 +1,48 @@
+---
+layout: null
+permalink: /embeds/q3-three-channel-bottleneck/
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueDot Q3 Three-Channel Bottleneck</title>
+    <link rel="stylesheet" href="{{ '/assets/css/beyond.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/bluedot-q3.css' | relative_url }}">
+    <style>
+        body { margin: 0; min-width: 0; }
+        .q3-figure { margin: 0 !important; }
+        .q3-figure-header { padding: .65rem .75rem 0 !important; }
+        .q3-figure-intro { font-size: .8rem; line-height: 1.3; }
+        .q3-system-diagram { margin: .65rem .75rem 0 !important; padding: .65rem !important; }
+        .q3-system-flow { display: grid !important; gap: .25rem !important; grid-template-columns: minmax(0, 1fr) .85rem minmax(0, 1fr) .85rem minmax(0, 1fr) .85rem minmax(0, 1fr); }
+        .q3-system-node { min-height: 4.65rem !important; min-width: 0 !important; padding: .45rem !important; width: 100%; }
+        .q3-system-node span { font-size: .59rem; }
+        .q3-system-node strong { font-size: .73rem; margin: .2rem 0 !important; }
+        .q3-system-node small { font-size: .62rem; }
+        .q3-system-split { min-width: 0; }
+        .q3-system-split .q3-system-node { min-height: 2.05rem !important; }
+        .q3-system-arrow { font-size: 1rem; }
+        .q3-system-diagram > p { font-size: .72rem; line-height: 1.3; margin: .5rem 0 0 !important; min-height: 0 !important; }
+        .q3-figure figcaption { font-size: .75rem; line-height: 1.35; margin-top: .65rem !important; padding: .55rem .75rem !important; }
+        .q3-caption-guide { display: none; }
+    </style>
+</head>
+<body>
+    <figure class="q3-figure" data-q3-figure="architecture">
+        <div class="q3-figure-header"><div><p class="article-figure-label">Figure 2 · The three-channel bottleneck</p><p class="q3-figure-intro">Three channels receive a chosen manifold; the remaining 61 channels are the complement to guard against.</p></div></div>
+        <div class="q3-system-diagram" data-q3-architecture role="group" aria-label="Interactive architecture of the manifold bottleneck">
+            <div class="q3-system-flow">
+                <button type="button" class="q3-system-node" data-q3-stage="encoder"><span>Input</span><strong>Sentence embedding</strong><small>384 dimensions</small></button><span class="q3-system-arrow" aria-hidden="true">→</span>
+                <button type="button" class="q3-system-node" data-q3-stage="head"><span>Coordinate head</span><strong>Three learned parameters</strong><small>for sphere or helix</small></button><span class="q3-system-arrow" aria-hidden="true">→</span>
+                <div class="q3-system-split"><button type="button" class="q3-system-node q3-system-geometry" data-q3-stage="geometry"><span>Reserved code</span><strong>3 manifold channels</strong><small>country geometry z</small></button><button type="button" class="q3-system-node q3-system-complement" data-q3-stage="complement"><span>Complement</span><strong>61 channels</strong><small>shortcut pressure</small></button></div><span class="q3-system-arrow" aria-hidden="true">→</span>
+                <button type="button" class="q3-system-node q3-system-tail" data-q3-stage="tail"><span>Frozen tail</span><strong>Country logit</strong><small>causal-use check</small></button>
+            </div>
+            <p data-q3-architecture-copy>Choose a component to inspect the role it plays in the design.</p>
+        </div>
+        <figcaption><span class="q3-caption-finding">The model solves the original task while routing country through a prescribed three-dimensional code.</span><span class="q3-caption-guide">Select a component to inspect its role in the intervention design.</span></figcaption>
+    </figure>
+    <script src="{{ '/assets/js/bluedot-q3.js' | relative_url }}"></script>
+</body>
+</html>

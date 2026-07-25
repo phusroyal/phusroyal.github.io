@@ -178,23 +178,7 @@ h_i^2=[z_i+b_{\mathcal G},r_i].
 $$
 
 ```html
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/beyond.css">
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/bluedot-q3.css">
-
-<figure class="q3-figure" data-q3-figure="architecture">
-  <div class="q3-figure-header"><div><p class="article-figure-label">Figure 2 · The three-channel bottleneck</p><p class="q3-figure-intro">Three channels receive a chosen manifold; the remaining 61 channels are the complement to guard against.</p></div></div>
-  <div class="q3-system-diagram" data-q3-architecture role="group" aria-label="Interactive architecture of the manifold bottleneck">
-    <div class="q3-system-flow">
-      <button type="button" class="q3-system-node" data-q3-stage="encoder"><span>Input</span><strong>Sentence embedding</strong><small>384 dimensions</small></button><span class="q3-system-arrow" aria-hidden="true">→</span>
-      <button type="button" class="q3-system-node" data-q3-stage="head"><span>Coordinate head</span><strong>Three learned parameters</strong><small>for sphere or helix</small></button><span class="q3-system-arrow" aria-hidden="true">→</span>
-      <div class="q3-system-split"><button type="button" class="q3-system-node q3-system-geometry" data-q3-stage="geometry"><span>Reserved code</span><strong>3 manifold channels</strong><small>country geometry z</small></button><button type="button" class="q3-system-node q3-system-complement" data-q3-stage="complement"><span>Complement</span><strong>61 channels</strong><small>shortcut pressure</small></button></div><span class="q3-system-arrow" aria-hidden="true">→</span>
-      <button type="button" class="q3-system-node q3-system-tail" data-q3-stage="tail"><span>Frozen tail</span><strong>Country logit</strong><small>causal-use check</small></button>
-    </div>
-    <p data-q3-architecture-copy>Choose a component to inspect the role it plays in the design.</p>
-  </div>
-  <figcaption><span class="q3-caption-finding">The model solves the original task while routing country through a prescribed three-dimensional code.</span><span class="q3-caption-guide">Select a component to inspect its role in the intervention design.</span></figcaption>
-</figure>
-<script src="https://phusroyal.github.io/assets/js/bluedot-q3.js"></script>
+<iframe src="https://phusroyal.github.io/embeds/q3-three-channel-bottleneck/" title="Interactive three-channel bottleneck diagram" style="border:0;display:block;height:315px;max-width:100%;width:100%" loading="lazy"></iframe>
 ```
 
 The learned coordinate head $a_\theta(e_i)$ predicts three unconstrained values, and fixed map $G_{\mathcal G}$ converts them into a normalized point on the chosen manifold:
@@ -525,19 +509,7 @@ GFAL makes the geometry functional. Geometry-probe AUC stays at $0.9997$ for the
 Linear-probe AUC falls from $0.9998/0.9997$ in the ClassOT stage to $0.5743/0.6710$. The sphere result is cleaner; the helix retains lower coverage and higher linear access, so MixOT remains necessary.
 
 ```html
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/beyond.css">
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/bluedot-q3.css">
-
-<section class="q3-loss-diagram" data-q3-loss-diagram aria-label="GFAL and GFAL plus loss-routing diagram">
-  <div class="q3-loss-diagram-header"><p class="q3-loss-diagram-title">How the model is pressured to use the manifold</p><div class="q3-loss-diagram-tabs" role="group" aria-label="Loss configuration"><button type="button" data-q3-loss-view="gfal" aria-pressed="true">GFAL</button><button type="button" data-q3-loss-view="gfal-plus" aria-pressed="false">GFAL+</button></div></div>
-  <div class="q3-loss-grid">
-    <div class="q3-loss-card q3-loss-card--geometry"><span>Reserved channels</span><strong>Manifold geometry</strong><p>Class-conditional matching and radius pressure shape the three-channel code.</p></div>
-    <div class="q3-loss-card q3-loss-card--tail"><span>Frozen tail</span><strong>Causal replacement + tail fitting</strong><p>Positive and negative anchors must move the country logit in the expected direction.</p></div>
-    <div class="q3-loss-card q3-loss-card--adversary"><span>Full hidden2</span><strong>Anti-linear adversary</strong><p>Gradient reversal weakens an easy linear country readout across all 64 channels.</p></div>
-    <div class="q3-loss-card q3-loss-card--complement" data-q3-loss-extra hidden><span>Complement only</span><strong>Complement adversary</strong><p>GFAL+ pressures the remaining 61 channels not to carry a backup country shortcut.</p></div>
-  </div>
-</section>
-<script src="https://phusroyal.github.io/assets/js/bluedot-q3.js"></script>
+<iframe src="https://phusroyal.github.io/embeds/q3-loss-routing/" title="Interactive GFAL loss-routing diagram" style="border:0;display:block;height:270px;max-width:100%;width:100%" loading="lazy"></iframe>
 ```
 
 ### 2.6 Reduce complement shortcuts
@@ -594,30 +566,11 @@ $$
 |  | GFAL+ | 0.9576 | 0.9949 | 0.9927 | **0.5992** | 0.7787 | **2.6884** | 0.2111 | **0.5681** |
 
 ```html
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/beyond.css">
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/bluedot-q3.css">
-
-<figure class="q3-figure" data-q3-figure="ladder" data-q3-src="https://phusroyal.github.io/assets/data/writing/bluedot-puzzle-1/q3/ladder-metrics.json">
-  <div class="q3-figure-header"><div><p class="article-figure-label">Figure 3 · Constraint ladder</p><p class="q3-figure-intro">Each stage repairs one failure mode; the selected metric shows the trade-off for the sphere shell and helix tube.</p></div><div class="q3-metric-tools"><div class="q3-controls q3-metric-controls" aria-label="Training metric"><button type="button" data-q3-metric="causal_target_delta" aria-pressed="true">Causal delta ↑</button><button type="button" data-q3-metric="geometry_probe_auc" aria-pressed="false">Geometry probe ↑</button><button type="button" data-q3-metric="linear_probe_auc" aria-pressed="false">Linear probe ↓</button><button type="button" data-q3-metric="coverage_entropy" aria-pressed="false">Coverage ↑</button><button type="button" data-q3-metric="complement_probe_auc" aria-pressed="false">Complement AUC ↓</button></div></div></div>
-  <div class="q3-ladder-stage-guide"><span><strong>Bottleneck</strong>reserve three channels</span><span><strong>MixOT</strong>cover the full shape</span><span><strong>ClassOT</strong>assign the classes</span><span><strong>GFAL</strong>make geometry causal</span><span><strong>GFAL+</strong>test the complement</span></div>
-  <div class="q3-chart" data-q3-canvas role="img" aria-label="Interactive constraint-ladder chart"><p class="q3-chart-status" data-q3-status>Loading stage metrics…</p></div>
-  <div class="q3-fallback"><img src="https://phusroyal.github.io/assets/images/writing/bluedot-puzzle-1/q3/training-ladder.png" alt="Static training ladder for sphere-shell and helix-tube models."></div>
-  <figcaption><span class="q3-caption-finding">ClassOT makes geometry readable; GFAL makes it causally active; GFAL+ tests whether the complement remains a backup route.</span><span class="q3-caption-guide">Compare causal delta, coverage, linear probe, and complement AUC.</span></figcaption>
-</figure>
-<script src="https://phusroyal.github.io/assets/js/bluedot-q3.js"></script>
+<iframe src="https://phusroyal.github.io/embeds/q3-constraint-ladder/" title="Interactive constraint-ladder chart" style="border:0;display:block;height:410px;max-width:100%;width:100%" loading="lazy"></iframe>
 ```
 
 ```html
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/beyond.css">
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/bluedot-q3.css">
-
-<figure class="q3-figure" data-q3-figure="final-codes" data-q3-src="https://phusroyal.github.io/assets/data/writing/bluedot-puzzle-1/q3/manifolds.json">
-  <div class="q3-figure-header"><div><p class="article-figure-label">Figure 4 · Final learned manifold codes</p><p class="q3-figure-intro">The final country code follows the assigned inner/outer manifold structure in both geometries.</p></div></div>
-  <div class="q3-canvas-grid" data-q3-canvas role="group" aria-label="Interactive final sphere-shell and helix-tube codes"><p class="q3-chart-status" data-q3-status>Loading final manifold codes…</p></div>
-  <div class="q3-fallback q3-fallback-pair"><img src="https://phusroyal.github.io/assets/images/writing/bluedot-puzzle-1/q3/sphere_shell-xz.png" alt="Static sphere-shell code view."><img src="https://phusroyal.github.io/assets/images/writing/bluedot-puzzle-1/q3/helix_tube-xz.png" alt="Static helix-tube code view."></div>
-  <figcaption><span class="q3-caption-finding">Country-positive examples are blue in the inner manifold region; charcoal negatives form the outer control region.</span><span class="q3-caption-guide">Drag either panel to independently inspect the learned three-dimensional code.</span></figcaption>
-</figure>
-<script src="https://phusroyal.github.io/assets/js/bluedot-q3.js"></script>
+<iframe src="https://phusroyal.github.io/embeds/q3-final-codes/" title="Interactive final manifold codes" style="border:0;display:block;height:285px;max-width:100%;width:100%" loading="lazy"></iframe>
 ```
 
 GFAL+ preserves task performance, strong geometry probes, and causal geometry for both manifolds. Its complement result is asymmetric: complement AUC falls from $0.6030$ to $0.5661$ for the helix but rises from $0.5764$ to $0.6086$ for the sphere. Thus it reduces a helix backup route but does not establish perfect information isolation for either geometry.
@@ -723,16 +676,7 @@ A high ratio means the geometry edit mainly affects country rather than every fe
 | Helix tube | 0.4279 | 0.5654 | 2.6884 | 7.1863 | 128.0430 | 5.1727 | 1.0000 | 47.3151 |
 
 ```html
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/beyond.css">
-<link rel="stylesheet" href="https://phusroyal.github.io/assets/css/bluedot-q3.css">
-
-<figure class="q3-figure" data-q3-figure="causal" data-q3-src="https://phusroyal.github.io/assets/data/writing/bluedot-puzzle-1/q3/causal-validation.json">
-  <div class="q3-figure-header"><div><p class="article-figure-label">Figure 5 · Causal-use validation</p><p class="q3-figure-intro">Each check changes only the three reserved geometry channels, then asks whether the frozen classifier responds in the predicted direction.</p></div></div>
-  <div class="q3-causal-story" data-q3-causal-story aria-live="polite"><p class="q3-chart-status" data-q3-status>Loading causal-use evidence…</p></div>
-  <div class="q3-fallback"><img src="https://phusroyal.github.io/assets/images/writing/bluedot-puzzle-1/q3/causal-validation.png" alt="Static causal-use validation comparison for sphere-shell and helix-tube models."></div>
-  <figcaption><span class="q3-caption-finding">Together, the four checks show that the geometry is not decorative: altering it changes the model’s country prediction in the expected way.</span><span class="q3-caption-guide">Select a check for its causal interpretation; Table 6 retains the full technical record.</span></figcaption>
-</figure>
-<script src="https://phusroyal.github.io/assets/js/bluedot-q3.js"></script>
+<iframe src="https://phusroyal.github.io/embeds/q3-causal-validation/" title="Interactive causal-use validation" style="border:0;display:block;height:490px;max-width:100%;width:100%" loading="lazy"></iframe>
 ```
 
 Both geometries pass every causal check. Ablation nearly removes country prediction, leaving both near chance. Replacement moves country logits in the expected direction with specificity ratios $73.4252$ and $47.3151$. Each path has monotonic fraction $1.0000$.
