@@ -1,0 +1,25 @@
+<div class="fega-publication-preview" aria-hidden="true">
+    <div class="fega-publication-lanes">
+        {% for lane in (1..2) %}
+        <div class="fega-publication-lane fega-publication-lane-{{ lane }}">
+            {% for repeat in (1..2) %}
+            {% for card in include.cards %}
+            <article class="fega-publication-feature-card">
+                <span class="fega-publication-card-tab">Feature {{ card.feature_id }} · {{ card.architecture }}</span>
+                <strong>{{ card.label }}</strong>
+                <small>{{ card.description }}</small>
+                <div class="fega-publication-card-views">
+                    <img src="{{ card.sphere | relative_url }}" alt="">
+                    <img src="{{ card.projection | relative_url }}" alt="">
+                </div>
+                <footer>
+                    <span>Ray <b>{{ card.ray }}</b></span>
+                    <span>Span-2 <b>{{ card.span_2 }}</b></span>
+                </footer>
+            </article>
+            {% endfor %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
