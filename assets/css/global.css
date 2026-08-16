@@ -140,31 +140,26 @@ a:hover {
     padding: 0.7rem 0.85rem;
 }
 
-.bio-research-focus {
+.bio-research-block {
+    border-left: 2px solid var(--color-primary);
     color: var(--color-muted);
+    margin: -0.35rem 0 1.2rem 0.45rem;
+    padding: 0.1rem 0 0.1rem 1rem;
+}
+
+.bio-research-focus {
     font-size: 14.5px;
     letter-spacing: -0.01em;
     line-height: 1.55;
-    margin: -0.35rem 0 1.2rem 1.25rem;
-    position: relative;
+    margin: 0;
 }
 
-.bio-research-focus::before {
+.bio-research-focus a {
     color: var(--color-primary);
-    content: "↳";
-    font-size: 1.35rem;
-    font-weight: 300;
-    left: -1.05rem;
-    line-height: 1;
-    opacity: 0.5;
-    position: absolute;
-    top: -0.4rem;
-}
-
-@media (min-width: 1200px) {
-    .bio-research-focus {
-        white-space: nowrap;
-    }
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
 }
 
 .navbar {

@@ -567,6 +567,53 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     padding-left: 0.75rem;
 }
 
+.article-context-note {
+    background: var(--beyond-paper);
+    border: 1px solid var(--beyond-line);
+    border-left: 3px solid var(--beyond-accent);
+    border-radius: 0.45rem;
+    color: var(--beyond-muted);
+    font-size: 0.94rem !important;
+    margin: 0 0 2rem;
+    padding: 1rem 1.1rem;
+}
+
+.application-log {
+    border-left: 1px solid var(--beyond-line);
+    display: grid;
+    gap: 1rem;
+    margin: 1.15rem 0 0 1rem;
+    padding-left: 1.1rem;
+}
+
+.application-log-entry {
+    min-width: 0;
+}
+
+.application-log-heading {
+    align-items: baseline;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.application-log-heading strong {
+    color: var(--beyond-ink);
+}
+
+.application-log-heading time {
+    color: var(--beyond-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.beyond-article .application-log-status {
+    color: var(--beyond-muted);
+    font-size: 0.9rem;
+    margin: 0.28rem 0 0;
+}
+
 .basin-takeaway > p {
     margin-top: 0;
 }

@@ -23,7 +23,9 @@ short_bio_text_justify: false
 short_bio: >-
   <p>I am a research associate at the <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/staff_ukp/ukp_home_content_staff_1_details_153664.en.jsp" target="_blank">UKP Lab</a>, TU Darmstadt, supervised by <a href="https://www.informatik.tu-darmstadt.de/ukp/ukp_home/head_ukp/index.en.jsp" target="_blank">Prof. Iryna Gurevych</a>. My research focuses on <strong>mechanistic interpretability of language models</strong>.</p>
 
-  <p class="bio-research-focus"><em>My research focuses on understanding the <strong>geometry</strong> of interventions and steering in language-model representations.</em></p>
+  <blockquote class="bio-research-block">
+    <p class="bio-research-focus"><em>My research focuses on understanding the <strong>geometry</strong> of interventions and steering in language-model representations; it reflects my broader interest in <a href="/writing/why-ai-safety/">why AI alignment matters to me</a>.</em></p>
+  </blockquote>
 
   <p>I completed my MSc in NLP at <a href="https://mbzuai.ac.ae/" target="_blank">MBZUAI</a>, where I was advised by <a href="https://yovakem.github.io/" target="_blank">Prof. Yova Kementchedjhieva</a> and <a href="https://kentaro-inui.github.io/" target="_blank">Prof. Kentaro Inui</a>. My thesis explored how large language models can reuse previous computations to speed up text generation without losing accuracy.</p>
 
