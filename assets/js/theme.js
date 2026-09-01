@@ -1,25 +1,8 @@
 (function () {
-    var storageKey = "phusroyal-theme";
     var darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    function readStoredTheme() {
-        try {
-            return window.localStorage.getItem(storageKey);
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function writeStoredTheme(theme) {
-        try {
-            window.localStorage.setItem(storageKey, theme);
-        } catch (error) {
-            return;
-        }
-    }
-
-    function preferredTheme() {
-        return readStoredTheme() || (darkThemeQuery.matches ? "dark" : "light");
+    function systemTheme() {
+        return darkThemeQuery.matches ? "dark" : "light";
     }
 
     function updateToggle(theme) {
@@ -37,14 +20,10 @@
         });
     }
 
-    function applyTheme(theme, shouldPersist) {
+    function applyTheme(theme) {
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
         updateToggle(theme);
-
-        if (shouldPersist) {
-            writeStoredTheme(theme);
-        }
 
         window.dispatchEvent(new CustomEvent("phusroyal-themechange", {detail: {theme: theme}}));
     }
@@ -59,7 +38,7 @@
         var endRadius;
 
         if (reduceMotion || typeof document.startViewTransition !== "function") {
-            applyTheme(theme, true);
+            applyTheme(theme);
             return;
         }
 
@@ -75,7 +54,7 @@
         root.style.setProperty("--theme-transition-radius", endRadius + "px");
 
         transition = document.startViewTransition(function () {
-            applyTheme(theme, true);
+            applyTheme(theme);
         });
 
         transition.finished.catch(function () {
@@ -83,7 +62,7 @@
         });
     }
 
-    applyTheme(preferredTheme(), false);
+    applyTheme(systemTheme());
 
     document.addEventListener("DOMContentLoaded", function () {
         updateToggle(document.documentElement.dataset.theme);
@@ -97,8 +76,6 @@
     });
 
     darkThemeQuery.addEventListener("change", function (event) {
-        if (!readStoredTheme()) {
-            applyTheme(event.matches ? "dark" : "light", false);
-        }
+        applyTheme(event.matches ? "dark" : "light");
     });
 }());

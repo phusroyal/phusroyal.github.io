@@ -28,19 +28,15 @@ toc:
     anchor: "actions"
 ---
 
-<p class="article-context-note">This page grew out of BlueDot's Technical AI Safety course. I found the exercise useful, so I am sharing it here to document my commitment and contributions to this field.</p>
+<p class="article-context-note">This page grew out of <a href="https://bluedot.org/certification?id=reccMFGhUQa4gnnlq">BlueDot's Technical AI Safety course</a>. I found the exercise useful, so I am sharing it here to document my commitment and contributions to this field.</p>
 
 ## Why AI Alignment? {#why-ai-alignment}
 
-I am focusing on **technical AI alignment**, particularly mechanistic interpretability, representation engineering, and methods for reliably understanding and controlling learned model behavior.
+I am focusing on **technical AI alignment**, particularly mechanistic interpretability, representation engineering, and methods for reliably understanding and controlling model behavior.
 
-AI alignment matters to me because I believe our relationship with AI is about to change fundamentally. Today, we mostly treat AI as a tool. But as it becomes better than us at research, planning, education, and decision-making, delegating more responsibility to it will often be the most efficient choice.
+AI alignment matters to me because I believe our relationship with AI is about to change fundamentally. Today, we mostly treat AI as a tool. But as it becomes better than us at research, planning, and decision-making, delegating more responsibility to it may become the more efficient choice. Because of that, I find it unacceptable that we could build and train these systems ourselves, become deeply dependent on them, and still not understand how they make important decisions or how their behavior might shift in unfamiliar situations.
 
-Because of that, I think it is unacceptable that we could build and train these systems ourselves, become deeply dependent on them, and still not understand how they make important decisions or how their behavior might shift in unfamiliar situations. Alignment is therefore not only about preventing catastrophic failure. It is about ensuring that increasingly capable AI systems preserve core human values such as democracy, dignity, creativity, happiness, and independence.
-
-Personally, I am drawn to this field because it offers relatively fast feedback loops. I can form hypotheses about model behavior, intervene directly, observe the effects, and iteratively refine my understanding.
-
-I am also interested in how safety spans the entire AI lifecycle, from training-data curation and early detection of emerging capabilities to post-training alignment, mechanistic interpretability, deployment-time control, and continuous monitoring.
+I am also drawn to this research because it offers fast feedback loops: I can form hypotheses about model behavior, intervene directly, observe the effects, and iteratively refine my understanding. More broadly, I am interested in safety across the entire AI-development lifecycle, from training-data curation and early detection of emerging capabilities to post-training alignment, mechanistic interpretability, deployment-time control, and continuous monitoring.
 
 ## Target Roles {#target-roles}
 
@@ -56,9 +52,36 @@ I am primarily interested in **research scientist and research engineer roles in
 
 ## Engagement with AI Safety {#engagement-with-ai-safety}
 
-- I completed the **[BlueDot Technical AI Safety](https://bluedot.org/courses/technical-ai-safety)** course.
-- I received an **Honorable Mention in BlueDot Impact's Technical AI Safety Puzzle #1** for an experiment on training a model to encode a semantic feature along a chosen nonlinear manifold using only three reserved channels. [LessWrong write-up](https://www.lesswrong.com/posts/ZwEer94AefjdW4933/can-we-teach-a-model-to-encode-a-semantic-feature-on-a)
-- I am developing **Feature-Effect Geometry Analysis (FEGA)**, an unsupervised causal framework for studying how SAE features affect model outputs across contexts. We find that interpretable SAE features rarely produce consistent one-dimensional effects, limiting their reliability as steering directions. [Project](https://ukplab.github.io/FEGA/) · [Paper](https://arxiv.org/abs/2607.24645)
+<div class="application-log">
+  <div class="application-log-entry">
+    <div class="application-log-heading">
+      <strong><a href="https://bluedot.org/certification?id=reccMFGhUQa4gnnlq">BlueDot Technical AI Safety</a></strong>
+      <time datetime="2026-08">Aug 2026</time>
+    </div>
+    <p class="application-log-status">Completed the course.</p>
+  </div>
+  <div class="application-log-entry">
+    <div class="application-log-heading">
+      <strong>BlueDot Technical AI Safety Puzzle #1</strong>
+      <time datetime="2026-07">Jul 2026</time>
+    </div>
+    <p class="application-log-status">Received an Honorable Mention for training a model to encode a semantic feature along a chosen nonlinear manifold using only three reserved channels. <a href="https://www.lesswrong.com/posts/ZwEer94AefjdW4933/can-we-teach-a-model-to-encode-a-semantic-feature-on-a">LessWrong write-up</a></p>
+  </div>
+  <div class="application-log-entry">
+    <div class="application-log-heading">
+      <strong>Feature-Effect Geometry Analysis (FEGA)</strong>
+      <time datetime="2026-07">Jul 2026</time>
+    </div>
+    <p class="application-log-status">Developing an unsupervised causal framework for studying how SAE features affect model outputs across contexts. Our results show that interpretable SAE features rarely produce consistent one-dimensional effects, limiting their reliability as steering directions. <a href="https://ukplab.github.io/FEGA/">Project</a> · <a href="https://arxiv.org/abs/2607.24645">Paper</a></p>
+  </div>
+  <div class="application-log-entry">
+    <div class="application-log-heading">
+      <strong>Murano</strong>
+      <time datetime="2026-08">Aug 2026</time>
+    </div>
+    <p class="application-log-status">Contributed to an open-source toolkit for designing, running, and reproducing mechanistic interpretability experiments as composable pipelines. Accepted to the EMNLP 2026 System Demonstrations Track. <a href="https://ukplab.github.io/murano/">Project</a> · <a href="https://arxiv.org/abs/2608.30662">Paper</a> · <a href="https://github.com/UKPLab/murano">Code</a></p>
+  </div>
+</div>
 
 ## Actions {#actions}
 
@@ -70,13 +93,13 @@ I am primarily interested in **research scientist and research engineer roles in
       <strong>Applied to ML4GOOD</strong>
       <time datetime="2026-07">Jul 2026</time>
     </div>
-    <!-- Add a future update here with: <p class="application-log-status">Status · Mon YYYY</p> -->
+    <p class="application-log-status"><strong>Accepted</strong> · Sep–Oct 2026 bootcamp.</p>
   </div>
   <div class="application-log-entry">
     <div class="application-log-heading">
       <strong>Applied to AIAF</strong>
       <time datetime="2026-08">Aug 2026</time>
     </div>
-    <!-- Add a future update here with: <p class="application-log-status">Status · Mon YYYY</p> -->
+    <p class="application-log-status"><strong>Rejected · not shortlisted.</strong> The fellowship received about 3,000 applications and accepted six participants, so my application was not strong enough to stand out in such a competitive pool.</p>
   </div>
 </div>
