@@ -1,20 +1,28 @@
 2021-toxic:
   count: 8
   url: "https://scholar.google.com/scholar?cites=10858144243684925421&as_sdt=2005&sciodt=0,5&hl=en"
-  updated: "2026-06-22"
+  updated: "2026-09-05"
 2023-phocnn:
-  count: 45
+  count: 47
   url: "https://scholar.google.com/scholar?cites=13851536095315564785&as_sdt=2005&sciodt=0,5&hl=en"
-  updated: "2026-06-22"
+  updated: "2026-09-05"
 2023-vbd:
   count: 1
   url: "https://scholar.google.com/scholar?cites=8976692797350280932&as_sdt=2005&sciodt=0,5&hl=en"
-  updated: "2026-06-22"
+  updated: "2026-09-05"
 2023-vihos:
-  count: 43
+  count: 46
   url: "https://scholar.google.com/scholar?cites=17928879615124081104&as_sdt=2005&sciodt=0,5&hl=en"
-  updated: "2026-06-22"
+  updated: "2026-09-05"
 2024-cafebert:
-  count: 18
+  count: 22
   url: "https://scholar.google.com/scholar?cites=17319224377368932226&as_sdt=2005&sciodt=0,5&hl=en"
-  updated: "2026-06-22"
+  updated: "2026-09-05"
+2026-fega:
+  count: 0
+  url: "https://scholar.google.com/scholar?hl=en&q=Sparse+Autoencoders+Encode+Both+Concepts+and+Functions%3A+The+Downstream+Geometry+of+Feature+Effects"
+  updated: "2026-09-05"
+2026-murano:
+  count: 0
+  url: "https://scholar.google.com/scholar?hl=en&q=MURANO%3A+Design%2C+Run%2C+and+Reproduce+Mechanistic+Interpretability+Experiments+as+Composable+Pipelines"
+  updated: "2026-09-05"

@@ -1,8 +1,33 @@
 (function () {
+    var storageKey = "phusroyal-theme";
     var darkThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function storedTheme() {
+        var theme;
+
+        try {
+            theme = window.localStorage.getItem(storageKey);
+        } catch (error) {
+            return null;
+        }
+
+        return theme === "dark" || theme === "light" ? theme : null;
+    }
+
+    function storeTheme(theme) {
+        try {
+            window.localStorage.setItem(storageKey, theme);
+        } catch (error) {
+            return;
+        }
+    }
 
     function systemTheme() {
         return darkThemeQuery.matches ? "dark" : "light";
+    }
+
+    function preferredTheme() {
+        return storedTheme() || systemTheme();
     }
 
     function updateToggle(theme) {
@@ -20,10 +45,14 @@
         });
     }
 
-    function applyTheme(theme) {
+    function applyTheme(theme, persist) {
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
         updateToggle(theme);
+
+        if (persist) {
+            storeTheme(theme);
+        }
 
         window.dispatchEvent(new CustomEvent("phusroyal-themechange", {detail: {theme: theme}}));
     }
@@ -38,7 +67,7 @@
         var endRadius;
 
         if (reduceMotion || typeof document.startViewTransition !== "function") {
-            applyTheme(theme);
+            applyTheme(theme, true);
             return;
         }
 
@@ -54,7 +83,7 @@
         root.style.setProperty("--theme-transition-radius", endRadius + "px");
 
         transition = document.startViewTransition(function () {
-            applyTheme(theme);
+            applyTheme(theme, true);
         });
 
         transition.finished.catch(function () {
@@ -62,7 +91,7 @@
         });
     }
 
-    applyTheme(systemTheme());
+    applyTheme(preferredTheme(), false);
 
     document.addEventListener("DOMContentLoaded", function () {
         updateToggle(document.documentElement.dataset.theme);
@@ -76,6 +105,8 @@
     });
 
     darkThemeQuery.addEventListener("change", function (event) {
-        applyTheme(event.matches ? "dark" : "light");
+        if (!storedTheme()) {
+            applyTheme(event.matches ? "dark" : "light", false);
+        }
     });
 }());

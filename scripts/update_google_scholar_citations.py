@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import difflib
 import html
 import re
 import sys
@@ -112,7 +113,43 @@ def scholar_search_url(query: str) -> str:
     return f"{SCHOLAR_BASE}/scholar?hl=en&q={urllib.parse.quote_plus(query)}"
 
 
-def fetch_scholar_count(query: str, timeout: int) -> tuple[int, str]:
+def normalize_title(value: str) -> str:
+    value = html.unescape(re.sub(r"<[^>]+>", " ", value))
+    value = re.sub(r"^\s*\[[^]]+\]\s*", "", value)
+    return " ".join(re.findall(r"[a-z0-9]+", value.casefold()))
+
+
+def matching_result(page: str, title: str) -> str:
+    expected_title = normalize_title(title)
+    candidates: list[tuple[float, str]] = []
+
+    for result in re.split(r'<div\s+class="gs_ri">', page, flags=re.IGNORECASE)[1:]:
+        title_match = re.search(
+            r'<h3\b[^>]*class="[^"]*\bgs_rt\b[^"]*"[^>]*>(.*?)</h3>',
+            result,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        if not title_match:
+            continue
+
+        result_title = normalize_title(title_match.group(1))
+        if result_title == expected_title:
+            return result
+
+        similarity = difflib.SequenceMatcher(None, expected_title, result_title).ratio()
+        candidates.append((similarity, result))
+
+    if candidates:
+        similarity, result = max(candidates, key=lambda candidate: candidate[0])
+        if similarity >= 0.9:
+            return result
+
+    if re.search(r"unusual traffic|not a robot", page, flags=re.IGNORECASE):
+        raise RuntimeError("Google Scholar blocked the automated request")
+    raise RuntimeError("no matching Google Scholar result found")
+
+
+def fetch_scholar_count(title: str, query: str, timeout: int) -> tuple[int, str]:
     request = urllib.request.Request(
         scholar_search_url(query),
         headers={
@@ -127,20 +164,21 @@ def fetch_scholar_count(query: str, timeout: int) -> tuple[int, str]:
     with urllib.request.urlopen(request, timeout=timeout) as response:
         page = response.read().decode("utf-8", errors="replace")
 
+    result = matching_result(page, title)
     match = re.search(
         r'href="(?P<href>/scholar\?cites=[^"]+)"[^>]*>\s*Cited by\s+(?P<count>[\d,]+)\s*</a>',
-        page,
+        result,
         flags=re.IGNORECASE,
     )
     if match:
         count = int(match.group("count").replace(",", ""))
         return count, SCHOLAR_BASE + html.unescape(match.group("href"))
 
-    count_match = re.search(r"Cited by\s+([\d,]+)", page, flags=re.IGNORECASE)
+    count_match = re.search(r"Cited by\s+([\d,]+)", result, flags=re.IGNORECASE)
     if count_match:
         return int(count_match.group(1).replace(",", "")), scholar_search_url(query)
 
-    raise RuntimeError("no Google Scholar citation count found")
+    return 0, scholar_search_url(query)
 
 
 def main() -> int:
@@ -166,7 +204,9 @@ def main() -> int:
         cache.setdefault(slug, {"count": None, "url": None, "updated": None})
         print(f"Updating {slug}: {publication['title']}")
         try:
-            count, url = fetch_scholar_count(publication["query"], args.timeout)
+            count, url = fetch_scholar_count(
+                publication["title"], publication["query"], args.timeout
+            )
         except (RuntimeError, urllib.error.URLError, TimeoutError) as error:
             print(f"  kept existing cache; Scholar lookup failed: {error}")
         else:
