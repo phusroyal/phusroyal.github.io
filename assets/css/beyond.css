@@ -363,6 +363,30 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     margin: 2.3rem 0 0.75rem;
 }
 
+.article-exercise {
+    border-bottom: 1px solid var(--beyond-line);
+    margin: 1rem 0;
+    scroll-margin-top: 6rem;
+}
+
+.article-exercise > summary {
+    cursor: pointer;
+    padding: 0.65rem 0;
+}
+
+.article-exercise > summary::marker {
+    color: var(--beyond-accent);
+}
+
+.article-exercise > summary h3 {
+    display: inline;
+    margin: 0;
+}
+
+.article-exercise[open] > summary {
+    margin-bottom: 0.5rem;
+}
+
 .beyond-article p,
 .beyond-article li {
     font-size: 1.02rem;
@@ -462,6 +486,33 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
     margin: 1.35rem auto;
     max-width: 100%;
     white-space: nowrap;
+}
+
+.article-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-margin-top: 6rem;
+}
+
+.article-table-scroll table {
+    scroll-margin-top: 6rem;
+}
+
+.beyond-article .article-table-prose {
+    white-space: normal;
+    width: 100%;
+}
+
+.article-table-prose caption {
+    color: var(--beyond-strong);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-align: left;
+}
+
+.beyond-article .article-table-prose :is(th, td) {
+    text-align: left;
+    vertical-align: top;
 }
 
 .article-table-caption,
@@ -616,6 +667,15 @@ html[data-theme="dark"] .beyond-nav .theme-toggle-icon-sun {
 
 .basin-takeaway > p {
     margin-top: 0;
+}
+
+.basin-takeaway--compact {
+    margin: 0.85rem 0 1.1rem;
+    padding: 0.65rem 1rem;
+}
+
+.basin-takeaway--compact > p {
+    margin: 0;
 }
 
 .basin-metrics {
