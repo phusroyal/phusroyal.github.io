@@ -1,3 +1,29 @@
+.writing-external-link {
+    border: 1px solid currentColor;
+    border-radius: 0.35rem;
+    color: var(--beyond-accent, var(--color-primary));
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 0.3rem 0.65rem;
+    text-decoration: none;
+}
+
+.writing-external-link:hover,
+.writing-external-link:focus-visible {
+    background: var(--beyond-paper, var(--color-surface));
+    color: var(--beyond-strong, var(--color-primary-hover));
+    text-decoration: none;
+}
+
+.writing-external-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;

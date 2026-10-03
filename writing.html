@@ -19,6 +19,9 @@ permalink: /writing/
             <p>{{ item.date | date: "%B %-d, %Y" }} &middot; {{ item.listing_kind | default: item.kind }}</p>
             <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
             <p>{{ item.description }}</p>
+            {% if item.lesswrong_url %}
+            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <span aria-hidden="true">↗</span></a>
+            {% endif %}
         </article>
         {% endunless %}
         {% endfor %}
@@ -30,6 +33,9 @@ permalink: /writing/
             <p>{{ item.date | date: "%B %-d, %Y" }} &middot; {{ item.listing_kind | default: item.kind }}</p>
             <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
             <p>{{ item.description }}</p>
+            {% if item.lesswrong_url %}
+            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <span aria-hidden="true">↗</span></a>
+            {% endif %}
         </article>
         {% endunless %}
         {% endfor %}
