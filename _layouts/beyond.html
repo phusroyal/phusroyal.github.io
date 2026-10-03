@@ -36,7 +36,7 @@
                 <h1>{{ page.title }}</h1>
                 <p class="beyond-description">{{ page.description }}</p>
                 {% if page.lesswrong_url %}
-                <a class="writing-external-link" href="{{ page.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <span aria-hidden="true">↗</span></a>
+                <a class="writing-external-link" href="{{ page.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <img class="writing-external-icon" src="{{ '/assets/images/icons/lesswrong.ico' | relative_url }}" alt="" width="16" height="16"></a>
                 {% endif %}
             </div>
         </section>

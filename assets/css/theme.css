@@ -24,6 +24,18 @@
     outline-offset: 3px;
 }
 
+.writing-external-icon {
+    display: block;
+    flex: 0 0 16px;
+    height: 16px;
+    object-fit: contain;
+    width: 16px;
+}
+
+html[data-theme="dark"] .writing-external-icon {
+    filter: invert(1);
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
     animation: none;

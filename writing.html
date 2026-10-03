@@ -20,7 +20,7 @@ permalink: /writing/
             <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
             <p>{{ item.description }}</p>
             {% if item.lesswrong_url %}
-            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <span aria-hidden="true">↗</span></a>
+            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <img class="writing-external-icon" src="{{ '/assets/images/icons/lesswrong.ico' | relative_url }}" alt="" width="16" height="16"></a>
             {% endif %}
         </article>
         {% endunless %}
@@ -34,7 +34,7 @@ permalink: /writing/
             <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
             <p>{{ item.description }}</p>
             {% if item.lesswrong_url %}
-            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <span aria-hidden="true">↗</span></a>
+            <a class="writing-external-link" href="{{ item.lesswrong_url | escape }}" target="_blank" rel="noopener noreferrer">Read on LessWrong <img class="writing-external-icon" src="{{ '/assets/images/icons/lesswrong.ico' | relative_url }}" alt="" width="16" height="16"></a>
             {% endif %}
         </article>
         {% endunless %}
